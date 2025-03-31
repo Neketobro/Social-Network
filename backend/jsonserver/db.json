@@ -1,0 +1,64 @@
+{
+  "users": [
+    {
+      "id": "userId_1",
+      "first_name": "Renata",
+      "last_name": "Robkina",
+      "email": "RenataRoobkina@example.com",
+      "password": "Renata",
+      "profile_picture_letter": "R",
+      "bio": "Hello! I'm Renata, a web developer.",
+      "subscribers": [
+        "userId_2"
+      ]
+    },
+    {
+      "id": "userId_2",
+      "first_name": "Nick",
+      "last_name": "Roobkin",
+      "email": "NickRoobkin@example.com",
+      "password": "NickRoobkin",
+      "profile_picture_letter": "N",
+      "bio": "Hi, I'm Nick. Love coding and traveling!",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "first_name": "Remie",
+      "last_name": "Jashkovich",
+      "email": "RemieJashkovich@example.com",
+      "password": "Jashkovich",
+      "bio": "Hello! My name is Remie. I`m from Ukrain.",
+      "id": "userId_f6512f67-f106-4331-af15-44d5ba1c9275",
+      "profile_picture_letter": "R",
+      "subscribers": []
+    }
+  ],
+  "posts": [
+    {
+      "userId": "userId_2",
+      "id": "postId_501c137d-6769-43e3-bb2d-24b228354d1f",
+      "content": "Mya",
+      "img": "https://media.4-paws.org/c/1/7/8/c178dd618346079f9b96edeacc30563b8de72fb4/Molly_006-2829x1886-2726x1886-1920x1328.webp"
+    },
+    {
+      "userId": "userId_2",
+      "id": "postId_7fe0b0dd-ef54-43ad-8be5-fc30c5d38718",
+      "content": "This is small cats",
+      "img": "https://www.bluecross.org.uk/sites/default/files/d8/styles/theme_feature_extra_large/public/2022-03/BX153925_Bromsgrove-2021-10-18-1684.jpg.webp?itok=9nJ4NfMp"
+    },
+    {
+      "userId": "userId_1",
+      "id": "postId_bd8ec7f1-acef-41b1-85a6-db4ba419856f",
+      "content": "Tsssssssssssss............",
+      "img": "https://i.cbc.ca/1.7046192.1701492097!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_1180/african-wild-cat.jpg?im=Resize%3D780"
+    },
+    {
+      "userId": "userId_f6512f67-f106-4331-af15-44d5ba1c9275",
+      "id": "postId_94e28425-be16-4d9a-a2c4-a3d45a8ab9ac",
+      "content": "Ukrain forever!",
+      "img": "https://amt.company/wp-content/uploads/2022/03/ukrainian_flag_motherland-930x620.jpg"
+    }
+  ]
+}
