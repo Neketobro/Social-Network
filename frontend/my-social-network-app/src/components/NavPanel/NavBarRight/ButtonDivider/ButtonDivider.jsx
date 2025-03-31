@@ -1,5 +1,6 @@
 import { Box, Button, Drawer } from '@mui/material';
 import { useState } from 'react';
+import { MyAccount } from './MyAccount/MyAccount';
 
 export function ButtonDivider() {
     const [open, setOpen] = useState(false);
@@ -10,7 +11,7 @@ export function ButtonDivider() {
 
     return (
         <>
-            <Button onClick={toggleDrawer(true)} variant='contained' sx={{ width: '100%', color: 'text.primary' }}>
+            <Button onClick={toggleDrawer(true)} variant='outlined' sx={{ width: '100%', color: 'text.primary', border: 'none', borderBottom: '1px solid', borderColor: 'divider', borderRadius: '0' }}>
                 Login
             </Button>
             <Drawer open={open} anchor="right" onClose={toggleDrawer(false)}>
@@ -19,8 +20,8 @@ export function ButtonDivider() {
                     role="presentation"
                     onClick={toggleDrawer(false)}
                 >
-                    {/* <MyAccount />
-                    <DividerList /> */}
+                    <MyAccount />
+                    {/* <DividerList /> */}
                     <Box sx={{ marginTop: 'auto', paddingBottom: '16px' }}>
                         {/* <ButtonLogOut /> */}
                     </Box>

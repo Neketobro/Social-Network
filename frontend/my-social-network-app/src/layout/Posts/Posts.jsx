@@ -2,9 +2,6 @@ import { Container, Avatar, Card, CardHeader, CardMedia, CardContent, Typography
 
 export function Posts({ users, posts }) {
 
-    console.log('users', users);
-    console.log('posts', posts);
-
     return (
         <Container sx={{
             display: 'flex',

@@ -5,7 +5,7 @@ import themeReducer from './app/theme.slice.js';
 import navPanelReducer from './app/navPanel.slice.js';
 import usersSagaReducer from './users/users.slice.js';
 import postSagaReducer from './post/post.slice.js';
-// import isUserSagaReducer from './isUser/isUser.slice.js';
+import userLoginSagaReducer from './userLogin/userLogin.slice.js';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -15,7 +15,7 @@ export const store = configureStore({
     navPanel: navPanelReducer,
     users: usersSagaReducer,
     post: postSagaReducer,
-    // isUser: isUserSagaReducer,
+    userLogin: userLoginSagaReducer,
   },
   middleware: (getDefaultMiddleware) => [
     ...getDefaultMiddleware({ thunk: false, serializableCheck: false }),

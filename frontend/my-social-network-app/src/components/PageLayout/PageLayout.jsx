@@ -19,7 +19,7 @@ export function PageLayout({
         minHeight: '100vh ',
       }}
     >
-      <Box component="header" sx={{ background: 'yellow', flex: !isOpen ? 0.5 : 1, height: 'auto', transition: '.4s all', }}>
+      <Box component="header" sx={{ flex: !isOpen ? 0.5 : 1, height: 'auto', transition: '.4s all', }}>
         {typeof renderHeader === 'function' ? renderHeader() : renderHeader}
       </Box>
       <Box
@@ -28,7 +28,7 @@ export function PageLayout({
       >
         {renderMain ? renderMain() : children}
       </Box>
-      <Box component="footer" sx={{ background: 'yellow', flex: !isOpen ? 1.5 : 1, height: 'auto', transition: '.4s all' }}>
+      <Box component="footer" sx={{ flex: !isOpen ? 1.5 : 1, height: 'auto', transition: '.4s all' }}>
         {typeof renderFooter === 'function' ? renderFooter() : renderFooter}
       </Box>
     </Box>

@@ -3,7 +3,7 @@ import {
     FETCH_USERS_LOADING,
     FETCH_USERS_SUCCESS,
     FETCH_USERS_ERROR,
-} from "./users.action.js";
+} from "./users.action";
 
 const initialState = {
     users: [],
