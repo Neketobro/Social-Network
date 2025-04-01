@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
     FETCH_USER_LOGIN_LOADING,
     FETCH_USER_LOGIN_SUCCESS,
-    FETCH_USER_LOGIN_ERROR
+    FETCH_USER_LOGIN_ERROR,
+    FETCH_USER_PROTECTED_DATA_SUCCESS,
+    FETCH_USER_PROTECTED_DATA_ERROR
 } from "./userLogin.action";
 
 const initialState = {
@@ -37,6 +39,14 @@ const userLoginSlice = createSlice({
                 state.userLogin = payload;
             })
             .addCase(FETCH_USER_LOGIN_ERROR, (state, { payload }) => {
+                state.status = "error";
+                state.error = payload;
+            })
+            .addCase(FETCH_USER_PROTECTED_DATA_SUCCESS, (state, { payload }) => {
+                state.status = "success";
+                state.userLogin = payload;
+            })
+            .addCase(FETCH_USER_PROTECTED_DATA_ERROR, (state, { payload }) => {
                 state.status = "error";
                 state.error = payload;
             });

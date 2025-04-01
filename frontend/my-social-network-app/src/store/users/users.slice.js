@@ -15,8 +15,8 @@ const usersSlice = createSlice({
     name: 'users',
     initialState,
     selectors: {
-        selectUsers: (state) => state.value,
-        selectUsersStatus: (state) => state.status,
+        selectUser: (state) => state.value,
+        selectUserStatus: (state) => state.status,
     },
     extraReducers: (builder) => {
         builder
