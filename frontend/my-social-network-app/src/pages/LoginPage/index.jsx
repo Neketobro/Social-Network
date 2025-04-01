@@ -13,13 +13,11 @@ export function LoginPage() {
     const isUser = useSelector(selectUserLogin);
 
     console.log('isUser', isUser);
-    
 
     useEffect(() => {
         dispatch(FETCH_USER_PROTECTED_DATA());
     }, [dispatch])
-
-
+    
 
     function validateEmail(email) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);

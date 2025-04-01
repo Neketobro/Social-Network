@@ -16,13 +16,7 @@ const initialState = {
 const userLoginSlice = createSlice({
     name: 'userLogin',
     initialState,
-    reducers: {
-        // getLoggedUserLogin: (state) => {
-        //     state.userLogin = {};
-        //     const userLogin = sessionStorage.getItem("userLogin");
-        //     state.userLogin = userLogin ? JSON.parse(userLogin) : {};
-        // },
-    },
+    reducers: {},
     selectors: {
         selectUserLogin: (state) => state.userLogin,
         selectUserLoginStatus: (state) => state.status,
