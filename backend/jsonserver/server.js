@@ -1,6 +1,5 @@
 const jsonServer = require("json-server");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
 const express = require("express");
 const fs = require("fs");
 const cors = require("cors");
@@ -24,24 +23,48 @@ const getUsers = () => {
   const db = JSON.parse(fs.readFileSync(dbFile, "UTF-8"));
   return db.users || [];
 };
+const getPosts = () => {
+  const db = JSON.parse(fs.readFileSync(dbFile, "UTF-8"));
+  return db.posts || [];
+};
+
+server.get("/users", (req, res) => {
+  const users = getUsers();
+  res.json(users) || [];
+})
+server.get("/posts", (req, res) => {
+  const posts = getPosts();
+  res.json(posts) || [];
+})
 
 // Авторизація
 server.post("/login", (req, res) => {
   const { email, password } = req.body;
-  const users = getUsers();
 
-  const user = users.find((u) => u.email === email);
-  if (!user) {
-    return res.status(401).json({ error: "Invalid email or password" });
+  if (!email || !password) {
+    return res.status(400).json({ error: "Email and password are required." });
   }
 
-  // Перевіряємо пароль (тут без хешування, але краще використовувати bcrypt)
-  if (user.password !== password) {
-    return res.status(401).json({ error: "Invalid email or password" });
-  }
+  try {
+    const users = getUsers();
+    const user = users.find((u) => u.email === email);
 
-  const token = generateToken(user);
-  res.json({ token, user });
+    if (!user) {
+      console.error(`Login attempt failed: Invalid email - ${email}`);
+      return res.status(401).json({ error: "Invalid email" });
+    }
+
+    if (user.password !== password) {
+      console.error(`Login attempt failed: Invalid password for email - ${email}`);
+      return res.status(401).json({ error: "Invalid password" });
+    }
+
+    const token = generateToken(user);
+    return res.json({ token, user });
+  } catch (err) {
+    console.error("Server error during login:", err);
+    return res.status(500).json({ error: "Internal server error." });
+  }
 });
 
 // Перевірка токена

@@ -4,7 +4,6 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "json-server": "^0.17.4",

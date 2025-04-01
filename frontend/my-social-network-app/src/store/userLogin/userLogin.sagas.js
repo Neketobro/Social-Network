@@ -1,4 +1,4 @@
-import { getUserLogin } from "../../api/index.js";
+import { isUserLogin } from "../../api/index.js";
 import { put, call, takeLatest } from 'redux-saga/effects';
 import {
     FETCH_USER_LOGIN,
@@ -13,14 +13,14 @@ export function* fetchUsersLoginSaga({ payload }) {
     yield put(FETCH_USER_LOGIN_LOADING());
 
     try {
-        const response = yield call(getUserLogin, payload);
+        const response = yield call(isUserLogin, payload);
 
-        if (response.length === 0) {
-            yield put(FETCH_USER_LOGIN_ERROR("User not found!"));
+        if (!response || response.error) {
+            yield put(FETCH_USER_LOGIN_ERROR(response.error));
             return;
         }
-        const isUser = response[0];
-        sessionStorage.setItem("isUser", JSON.stringify(isUser));
+
+        sessionStorage.setItem("token", JSON.stringify(response.token));
 
         yield put(FETCH_USER_LOGIN_SUCCESS(response));
     } catch (e) {

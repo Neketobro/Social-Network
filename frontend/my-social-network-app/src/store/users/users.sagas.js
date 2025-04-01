@@ -14,7 +14,7 @@ export function* fetchUsersSaga({ payload }) {
     
     if (status === "loading") return;
     try {
-        const response = yield call(getUsers, payload);
+        const response = yield call(getUsers, payload);        
 
         yield put(FETCH_USERS_SUCCESS(response));
     } catch (e) {

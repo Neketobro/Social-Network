@@ -31,7 +31,7 @@ export function LoginPage() {
         const data = {
             email: email,
             password: password
-        }
+        }        
 
         dispatch(FETCH_USER_LOGIN(data));
     }

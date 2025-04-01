@@ -11,15 +11,15 @@ const axiosConf = (signal) =>
     timeout: 2000,
   });
 
-const genericRequest = async ({ requestType = "get", url, data, signal }) => {
+const genericRequest = async ({ requestType, url, data, signal }) => {
   try {
-    const httpClient = axiosConf(signal);
+    const httpClient = axiosConf(signal);    
     const response = await httpClient[requestType](url, data);
 
     return response.data;
   } catch (e) {
     if (axios.isAxiosError(e) && e.response) {
-      console.error(e.response);
+      return e.response.data;
     } else {
       throw new Error("Unknown error.");
     }
