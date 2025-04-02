@@ -1,23 +1,24 @@
 import { Box, Container, Paper, Typography, TextField, Button } from "@mui/material";
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FETCH_USER_LOGIN, FETCH_USER_LOGIN_ERROR, selectUserLoginError, FETCH_USER_PROTECTED_DATA, selectUserLogin } from "../../store";
 
 export function LoginPage() {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const error = useSelector(selectUserLoginError)
     const emailRef = useRef();
     const passwordRef = useRef();
-
     const isUser = useSelector(selectUserLogin);
-
-    console.log('isUser', isUser);
 
     useEffect(() => {
         dispatch(FETCH_USER_PROTECTED_DATA());
-    }, [dispatch])
-    
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (isUser) navigate('/')
+    }, [isUser, navigate])
 
     function validateEmail(email) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -41,7 +42,6 @@ export function LoginPage() {
             email: email,
             password: password
         }
-
         dispatch(FETCH_USER_LOGIN(data));
     }
 

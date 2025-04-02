@@ -11,10 +11,10 @@ import { selectUsersStatus } from "./users.slice.js";
 export function* fetchUsersSaga({ payload }) {
     yield put(FETCH_USERS_LOADING());
     const status = select(selectUsersStatus);
-    
+
     if (status === "loading") return;
     try {
-        const response = yield call(getUsers, payload);        
+        const response = yield call(getUsers, payload);
 
         yield put(FETCH_USERS_SUCCESS(response));
     } catch (e) {

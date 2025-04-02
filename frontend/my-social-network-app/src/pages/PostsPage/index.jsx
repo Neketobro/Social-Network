@@ -14,13 +14,13 @@ export function PostsPage() {
 
     useEffect(() => {
         const controller = new AbortController();
-        dispatch(FETCH_USERS(controller.signal));
         dispatch(POST_RESPONE(controller.signal));
+        dispatch(FETCH_USERS(controller.signal));
 
         return () => {
             controller.abort();
         };
-    }, [dispatch]);
+    }, []);
 
     const isLoading = usersStatus === "loading" || postsStatus === "loading";
     const isError = usersStatus === "error" || postsStatus === "error";

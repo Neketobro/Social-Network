@@ -28,7 +28,7 @@ export function PageLayout({
       >
         {renderMain ? renderMain() : children}
       </Box>
-      <Box component="footer" sx={{ flex: !isOpen ? 1.5 : 1, height: 'auto', transition: '.4s all' }}>
+      <Box component="footer" sx={{background: 'blue', flex: !isOpen ? 1.5 : 1, height: 'auto', transition: '.4s all', maxWidth: !isOpen ? 200 : 150 }}>
         {typeof renderFooter === 'function' ? renderFooter() : renderFooter}
       </Box>
     </Box>

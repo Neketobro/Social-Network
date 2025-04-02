@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const express = require("express");
 const fs = require("fs");
 const cors = require("cors");
+const { request } = require("http");
 
 const server = express();
 server.use(cors());
@@ -28,14 +29,49 @@ const getPosts = () => {
   return db.posts || [];
 };
 
+// server.get("/users", (req, res) => {
+//   const users = getUsers();
+//   res.json(users) || [];
+// })
+
 server.get("/users", (req, res) => {
   const users = getUsers();
   res.json(users) || [];
 })
+
 server.get("/posts", (req, res) => {
   const posts = getPosts();
   res.json(posts) || [];
 })
+
+// server.post("/users", (req, res) => {
+//   console.log('request => ', req.body);
+//   const { userId } = req.body;
+  
+//   console.log('request userId => ', userId);
+
+
+//   if (!userId) {
+//     return res.status(400).json({ error: "User are required." });
+//   }
+
+//   try {
+//     const users = getUsers();
+//     const user = users.find((u) => u.id === id);
+
+//     console.log('user => ', user);
+
+//     if (!user) {
+//       console.error(`Fetch failed: Invalid user - ${user}`);
+//       return res.status(401).json({ error: "Invalid user id" });
+//     }
+
+//     return res.json(user)
+//   } catch (err) {
+//     console.error("Server error during login:", err);
+//     return res.status(500).json({ error: "Internal server error." });
+//   }
+// })
 
 // Авторизація
 server.post("/login", (req, res) => {
@@ -82,7 +118,26 @@ const verifyToken = (req, res, next) => {
 
 // Захищений маршрут (перевірка токена)
 server.get("/protected", verifyToken, (req, res) => {
-  res.json({ message: "You have access to protected data", user: req.user });
+  const { id } = req.user;
+
+  if (!id) {
+    return res.status(400).json({ error: "User are required." });
+  }
+
+  try {
+    const users = getUsers();
+    const user = users.find((u) => u.id === id);
+
+    if (!user) {
+      console.error(`Fetch failed: Invalid user - ${user}`);
+      return res.status(401).json({ error: "Invalid user id" });
+    }
+
+    res.json({ message: "You have access to data", user: user });
+  } catch (err) {
+    console.error("Server error during login:", err);
+    return res.status(500).json({ error: "Internal server error." });
+  }
 });
 
 // Використовуємо json-server як middleware

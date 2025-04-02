@@ -1,7 +1,13 @@
 
 import { get, post, patch } from './httpClient';
 
-export async function isUserLogin({email, password}) {
+export async function getUserLogin({ userId }) {
+    console.log('payload => ', JSON.stringify({ userId }));
+
+    return await post('/users', JSON.stringify({ userId }));
+}
+
+export async function isUserLogin({ email, password }) {
     return await post('/login', JSON.stringify({ email, password }))
 }
 
