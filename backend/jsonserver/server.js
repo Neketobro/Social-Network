@@ -47,7 +47,7 @@ server.get("/posts", (req, res) => {
 // server.post("/users", (req, res) => {
 //   console.log('request => ', req.body);
 //   const { userId } = req.body;
-  
+
 //   console.log('request userId => ', userId);
 
 
@@ -74,6 +74,35 @@ server.get("/posts", (req, res) => {
 // })
 
 // Авторизація
+
+server.post("/posts", (req, res) => {
+  const posts = getPosts();
+  const { userId, id, content, img } = req.body;
+
+  if (!userId || !id || !content) {
+    return res.status(400).json({ error: "userId, id, and content are required." });
+  }
+
+  const newPost = { userId, id, content, img: img || "" };
+
+  posts.push(newPost);
+
+  try {
+    // Зчитуємо повну базу
+    const db = JSON.parse(fs.readFileSync(dbFile, "UTF-8"));
+    db.posts = posts;
+
+    // Перезаписуємо файл із оновленими постами
+    fs.writeFileSync(dbFile, JSON.stringify(db, null, 2));
+
+    return res.status(201).json(newPost);
+  } catch (err) {
+    console.error("Error writing to database:", err);
+    return res.status(500).json({ error: "Internal server error." });
+  }
+});
+
+
 server.post("/login", (req, res) => {
   const { email, password } = req.body;
 

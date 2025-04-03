@@ -1,9 +1,13 @@
 import { Button, Typography } from '@mui/material';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
+import { useNavigate } from 'react-router';
 
 export function ButtonLogOut() {
+const navigate = useNavigate();
+
     function logoutUser() {
         sessionStorage.removeItem("token");
+        navigate('/')
         window.location.reload();
     }
 

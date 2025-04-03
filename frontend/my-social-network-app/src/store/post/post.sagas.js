@@ -1,4 +1,4 @@
-import { addPost, getPosts, deletePost } from "../../api/index.js";
+import { addPost, getPosts, deletePost } from "../../api";
 import { put, call, takeLatest, select } from 'redux-saga/effects';
 import {
     POST_RESPONE,

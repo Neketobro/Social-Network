@@ -4,6 +4,9 @@ export async function getPosts(signal) {
     return await get('/posts', signal);
 }
 export async function addPost(payload) {
+    console.log('payload -> ', payload);
+    
+
     return await post(`/posts`, payload);
 }
 export async function deletePost(payload) {

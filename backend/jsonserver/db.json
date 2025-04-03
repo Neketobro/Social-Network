@@ -59,6 +59,12 @@
       "id": "postId_94e28425-be16-4d9a-a2c4-a3d45a8ab9ac",
       "content": "Ukrain forever!",
       "img": "https://amt.company/wp-content/uploads/2022/03/ukrainian_flag_motherland-930x620.jpg"
+    },
+    {
+      "userId": "userId_1",
+      "id": "postId_7851ddd3-3cbc-4165-98a9-b816b386a0ad",
+      "content": "this cat is lazy",
+      "img": "https://www.cdc.gov/healthy-pets/media/images/2024/04/Cat-on-couch.jpg"
     }
   ]
 }
