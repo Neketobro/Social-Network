@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { PostsPage, ErrorPage, LoginPage, CreatePostPage } from '../pages';
+import { PostsPage, ErrorPage, LoginPage, CreatePostPage, ProfilePage, UsersProfilePage, MyProfilePage } from '../pages';
 
 const routerConfig = [
   {
@@ -11,13 +11,22 @@ const routerConfig = [
       { path: '/login', element: <LoginPage /> },
       { path: '/createpost', element: <CreatePostPage /> },
       // { path: '/register', element: <RegisterPage /> },
+      {
+        path: '/profile',
+        children: [
+          { index: true, element: <UsersProfilePage /> },
+          { path: 'myprofile', element: <MyProfilePage /> },
+          { path: ':id', element: <ProfilePage /> },
+
+        ],
+      },
       // { path: '/myprofile', element: <MyProfilePage /> },
       // {
       //   path: '/profile',
-      //   children: [
-      //     { index: true, element: <PostsPage /> },
-      //     { path: ':id', element: <ProfilePage /> },
-      //   ],
+      // children: [
+      //   { index: true, element: <PostsPage /> },
+      //   { path: ':id', element: <ProfilePage /> },
+      // ],
       // },
     ],
   },

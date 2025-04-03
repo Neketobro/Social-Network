@@ -8,21 +8,11 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectNavPanel, setOpen } from '../../../store';
 import { ThemeToggle } from './ThemeToggle';
-import { useEffect } from 'react';
 import Logo from '../../../assets/Logo.png';
 
 export function NavBarLeft() {
   const isOpen = useSelector(selectNavPanel);
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   const controller = new AbortController();
-  //   dispatch(FETCH_USERS(controller.signal));
-
-  //   return () => {
-  //     controller.abort();
-  //   };
-  // }, []);
 
   const isMobile = useMediaQuery('(max-width:600px)');
 
@@ -49,7 +39,7 @@ export function NavBarLeft() {
     {
       icon: <AccountBoxRoundedIcon sx={{ fontSize: '2rem' }} />,
       text: 'Profile',
-      url: '/myprofile',
+      url: '/profile/myprofile',
     },
   ];
 
