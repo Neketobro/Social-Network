@@ -1,16 +1,19 @@
 import { Box, Container, Paper, Typography, TextField, Button } from "@mui/material";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { FETCH_USER_LOGIN, FETCH_USER_LOGIN_ERROR, selectUserLoginError, FETCH_USER_PROTECTED_DATA, selectUserLogin } from "../../store";
+import { FETCH_USER_LOGIN, FETCH_USER_LOGIN_ERROR, selectUserLoginError, FETCH_USER_PROTECTED_DATA, selectUserLogin, selectUserLoginStatus } from "../../store";
 
 export function LoginPage() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const error = useSelector(selectUserLoginError)
+    const error = useSelector(selectUserLoginError);
+    const isUser = useSelector(selectUserLogin);
+    const loadingStatus = useSelector(selectUserLoginStatus);
+    const [loading, setLoading] = useState(false);
     const emailRef = useRef();
     const passwordRef = useRef();
-    const isUser = useSelector(selectUserLogin);
+    
 
     useEffect(() => {
         dispatch(FETCH_USER_PROTECTED_DATA());
@@ -44,10 +47,17 @@ export function LoginPage() {
         }
         dispatch(FETCH_USER_LOGIN(data));
     }
-
+    useEffect(() => {
+        if (!error && loadingStatus === 'loading') {
+            setLoading(true);
+        } else {
+            setLoading(false);
+        };
+    }, [loadingStatus])
+    
     return (
         <Container sx={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Paper elevation={5} sx={{ padding: '2vh', height: 'auto', width: '25vw', display: 'flex', alignItems: 'center', justifyContent: 'space-around', flexDirection: 'column', border: '1px solid', borderColor: 'divider', borderRadius: '10px' }}>
+            <Paper elevation={5} sx={{ padding: '2vh', height: '50vh', width: '25vw', display: 'flex', alignItems: 'center', justifyContent: 'space-around', flexDirection: 'column', border: '1px solid', borderColor: 'divider', borderRadius: '10px' }}>
                 <Box sx={{ textAlign: 'center', display: 'flex', flexDirection: 'column', gap: 2 }}>
                     <Typography variant="h3" sx={{ fontWeight: 'bold', color: 'text.primary' }}>
                         Sign in
@@ -66,9 +76,8 @@ export function LoginPage() {
                 >
                     <TextField error={error} label="Enter your email" variant="outlined" inputRef={emailRef} />
                     <TextField error={error} label="Enter your password" type="password" variant="outlined" inputRef={passwordRef} />
-                    <Button variant="contained" type="submit">Sign in</Button>
+                    <Button variant="contained" loading={loading} type="submit">Sign in</Button>
                 </Box>
-
                 <Typography sx={{ color: 'text.secondary', textAlign: 'end' }}>
                     Don't have an account?
                     <NavLink to='/register' style={{ textDecoration: 'none' }}>

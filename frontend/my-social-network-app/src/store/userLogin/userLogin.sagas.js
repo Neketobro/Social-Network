@@ -1,4 +1,4 @@
-import { isUserLogin, fetchProtectedData, getUserLogin} from "../../api/index.js";
+import { isUserLogin, fetchProtectedData, getUserLogin } from "../../api/index.js";
 import { put, call, takeLatest } from 'redux-saga/effects';
 import {
     FETCH_USER_LOGIN,

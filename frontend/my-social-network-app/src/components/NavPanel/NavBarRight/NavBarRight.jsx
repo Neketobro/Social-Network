@@ -18,11 +18,8 @@ export function NavBarRight() {
         return () => {
             controller.abort();
         };
-    }, [dispatch]);
+    }, [dispatch]);    
 
-    // console.log('isUser -> ', isUser);
-    // console.log('users -> ', users);
-    // console.log('users -> ', users);
     return (
         <Box sx={{
             height: '100%',
