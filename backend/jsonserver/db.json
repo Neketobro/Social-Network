@@ -33,6 +33,102 @@
       "id": "userId_f6512f67-f106-4331-af15-44d5ba1c9275",
       "profile_picture_letter": "R",
       "subscribers": []
+    },
+    {
+      "id": "userId_4",
+      "first_name": "Nick",
+      "last_name": "Roobkin",
+      "email": "NickRoobkin@example.com",
+      "password": "NickRoobkin",
+      "profile_picture_letter": "N",
+      "bio": "Hi, I'm Nick. Love coding and traveling!",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_5",
+      "first_name": "Nick",
+      "last_name": "Roobkin",
+      "email": "NickRoobkin@example.com",
+      "password": "NickRoobkin",
+      "profile_picture_letter": "N",
+      "bio": "Hi, I'm Nick. Love coding and traveling!",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_6",
+      "first_name": "Nick",
+      "last_name": "Roobkin",
+      "email": "NickRoobkin@example.com",
+      "password": "NickRoobkin",
+      "profile_picture_letter": "N",
+      "bio": "Hi, I'm Nick. Love coding and traveling!",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_7",
+      "first_name": "Nick",
+      "last_name": "Roobkin",
+      "email": "NickRoobkin@example.com",
+      "password": "NickRoobkin",
+      "profile_picture_letter": "N",
+      "bio": "Hi, I'm Nick. Love coding and traveling!",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_8",
+      "first_name": "Nick",
+      "last_name": "Roobkin",
+      "email": "NickRoobkin@example.com",
+      "password": "NickRoobkin",
+      "profile_picture_letter": "N",
+      "bio": "Hi, I'm Nick. Love coding and traveling!",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_9",
+      "first_name": "Nick",
+      "last_name": "Roobkin",
+      "email": "NickRoobkin@example.com",
+      "password": "NickRoobkin",
+      "profile_picture_letter": "N",
+      "bio": "Hi, I'm Nick. Love coding and traveling!",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_10",
+      "first_name": "Nick",
+      "last_name": "Roobkin",
+      "email": "NickRoobkin@example.com",
+      "password": "NickRoobkin",
+      "profile_picture_letter": "N",
+      "bio": "Hi, I'm Nick. Love coding and traveling!",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_11",
+      "first_name": "Nick",
+      "last_name": "Roobkin",
+      "email": "NickRoobkin@example.com",
+      "password": "NickRoobkin",
+      "profile_picture_letter": "N",
+      "bio": "Hi, I'm Nick. Love coding and traveling!",
+      "subscribers": [
+        "userId_1"
+      ]
     }
   ],
   "posts": [

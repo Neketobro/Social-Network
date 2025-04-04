@@ -12,7 +12,7 @@ export function MyProfilePage() {
         if (user?.id) {
             navigate(`/profile/${user.id}`);
         } else {
-            navigate('/')
+            navigate('/login')
         }
     }, [user, navigate]);
 
