@@ -29,11 +29,6 @@ const getPosts = () => {
   return db.posts || [];
 };
 
-// server.get("/users", (req, res) => {
-//   const users = getUsers();
-//   res.json(users) || [];
-// })
-
 server.get("/users", (req, res) => {
   const users = getUsers();
   res.json(users) || [];
@@ -44,34 +39,46 @@ server.get("/posts", (req, res) => {
   res.json(posts) || [];
 })
 
-// server.post("/users", (req, res) => {
-//   console.log('request => ', req.body);
-//   const { userId } = req.body;
+server.post("/users", (req, res) => {
+  const { userId } = req.body;
 
-//   console.log('request userId => ', userId);
+  if (!userId) {
+    return res.status(400).json({ error: "User are required." });
+  }
 
+  try {
+    const users = getUsers();
+    const user = users.find((u) => u.id === userId);
 
-//   if (!userId) {
-//     return res.status(400).json({ error: "User are required." });
-//   }
+    if (!user) {
+      console.error(`Fetch failed: Invalid user => ${user}`);
+      return res.status(401).json({ error: "Invalid user id" });
+    }
 
-//   try {
-//     const users = getUsers();
-//     const user = users.find((u) => u.id === id);
+    return res.json({ message: "You have access to data", user: user });
+  } catch (err) {
+    console.error("Server error during login:", err);
+    return res.status(500).json({ error: "Internal server error." });
+  }
+})
 
-//     console.log('user => ', user);
+server.post("/posts", (req, res) => {
+  const { userId } = req.body;
 
-//     if (!user) {
-//       console.error(`Fetch failed: Invalid user - ${user}`);
-//       return res.status(401).json({ error: "Invalid user id" });
-//     }
+  if (!userId) {
+    return res.status(400).json({ error: "userId is required." });
+  }
 
-//     return res.json(user)
-//   } catch (err) {
-//     console.error("Server error during login:", err);
-//     return res.status(500).json({ error: "Internal server error." });
-//   }
-// })
+  try {
+    const posts = getPosts();
+    const userPosts = posts.filter(post => post.userId === userId);
+    return res.status(200).json(userPosts);
+  } catch (err) {
+    console.error("Error fetching user posts:", err);
+    return res.status(500).json({ error: "Internal server error." });
+  }
+});
+
 
 // Авторизація
 

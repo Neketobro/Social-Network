@@ -1,12 +1,11 @@
 import { all } from "redux-saga/effects";
-import { watchFetchUsersSagas } from "./users/users.sagas.js";
-import { watchFetchUserLoginSagas } from "./userLogin/userLogin.sagas.js";
-import { watchPostResponeSagas } from "./post/post.sagas.js";
+import { watchPostResponeSagas, watchFetchUserLoginSagas, watchFetchUsersSagas, watchFetchUserSagas } from "./index.js";
 
 export function* rootSaga() {
     yield all([
-        watchFetchUsersSagas(), 
+        watchFetchUsersSagas(),
         watchPostResponeSagas(),
         watchFetchUserLoginSagas(),
+        watchFetchUserSagas(),
     ]);
 }

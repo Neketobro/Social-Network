@@ -1,7 +1,6 @@
 import { createAction } from "@reduxjs/toolkit";
 
 export const FETCH_USER_LOGIN = createAction("fetch/user/login");
-export const FETCH_USER = createAction("fetch/user");
 
 export const FETCH_USER_LOGIN_LOADING = createAction("fetch/users/login/loading");
 export const FETCH_USER_LOGIN_SUCCESS = createAction("fetch/user/login/success");

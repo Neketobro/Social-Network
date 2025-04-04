@@ -1,4 +1,4 @@
-import { addPost, getPosts, deletePost } from "../../api";
+import { addPost, getPosts, deletePost, getPostUser } from "../../api";
 import { put, call, takeLatest, select } from 'redux-saga/effects';
 import {
     POST_RESPONE,
@@ -7,6 +7,7 @@ import {
     POST_RESPONE_ERROR,
     POST_RESPONE_ADD,
     DELETE_POST,
+    FETCH_POST
 } from "./post.action.js";
 import { selectPostStatus } from "./post.slice.js";
 
@@ -55,8 +56,24 @@ export function* postResponeDeleteSaga({ payload }) {
     }
 }
 
+export function* fetchPostUserSaga({ payload }) {
+    yield put(POST_RESPONE_LOADING());
+    const status = select(selectPostStatus);
+
+    if (status === 'loading') return;
+    try {
+        const response = yield call(getPostUser, payload);        
+
+        yield put(POST_RESPONE_SUCCESS(response));
+    } catch (e) {
+        console.log(e);
+        yield put(POST_RESPONE_ERROR());
+    }
+}
+    
 export function* watchPostResponeSagas() {
     yield takeLatest(POST_RESPONE, fetchPostsSaga);
     yield takeLatest(POST_RESPONE_ADD, postResponeSaga);
     yield takeLatest(DELETE_POST, postResponeDeleteSaga);
+    yield takeLatest(FETCH_POST, fetchPostUserSaga);
 }

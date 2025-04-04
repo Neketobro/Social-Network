@@ -6,7 +6,6 @@ import { MyAccount } from './MyAccount';
 import { ListDivider } from './ListDivider'
 import { ButtonLogOut } from './ButtonLogOut'
 
-
 export function ButtonDivider() {
     const [open, setOpen] = useState(false);
     const isUser = useSelector(selectUserLogin);

@@ -9,8 +9,7 @@ import {
     USER_ADD_SUBSCRIDERS,
     FETCH_USER_PROTECTED_DATA_ERROR,
     FETCH_USER_PROTECTED_DATA_SUCCESS,
-    FETCH_USER_PROTECTED_DATA,
-    FETCH_USER
+    FETCH_USER_PROTECTED_DATA
 } from "./userLogin.action.js";
 
 export function* fetchUsersLoginSaga({ payload }) {
@@ -52,24 +51,7 @@ export function* fetchProtectedDataSaga() {
     }
 }
 
-export function* fetchUserSaga({ payload }) {
-    yield put(FETCH_USER_LOGIN_LOADING());
-
-    try {
-        const response = yield call(getUserLogin, payload);
-
-        console.log('response -> ', response);
-
-        yield put(FETCH_USER_LOGIN_SUCCESS());
-    } catch (e) {
-        console.log(e);
-        yield put(FETCH_USER_LOGIN_ERROR());
-    }
-}
-
-
 export function* watchFetchUserLoginSagas() {
     yield takeLatest(FETCH_USER_LOGIN, fetchUsersLoginSaga);
     yield takeLatest(FETCH_USER_PROTECTED_DATA, fetchProtectedDataSaga);
-    yield takeLatest(FETCH_USER, fetchUserSaga);
 }

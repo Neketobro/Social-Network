@@ -50,4 +50,3 @@ const userLoginSlice = createSlice({
 export default userLoginSlice.reducer;
 
 export const { selectUserLogin, selectUserLoginStatus, selectUserLoginError } = userLoginSlice.selectors;
-// export const { getLoggedUserLogin } = userLoginSlice.actions;

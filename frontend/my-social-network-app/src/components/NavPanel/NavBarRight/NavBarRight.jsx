@@ -1,13 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Box } from '@mui/material';
-import { FETCH_USER_PROTECTED_DATA, FETCH_USERS, selectNavPanel, selectUserLogin, selectUsers } from '../../../store'
+import { FETCH_USER_PROTECTED_DATA, FETCH_USERS, selectNavPanel } from '../../../store'
 import { ButtonDivider } from './ButtonDivider';
 import { useEffect } from "react";
 
 export function NavBarRight() {
     const dispatch = useDispatch();
-    const isUser = useSelector(selectUserLogin);
-    const users = useSelector(selectUsers);
     const isOpen = useSelector(selectNavPanel);
 
     useEffect(() => {

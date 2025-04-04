@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUserLogin } from "../../store";
-import { Loader } from "../../components";
+import { NavBarLeft, NavBarRight, PageLayout, Loader } from '../../components';
 
 export function MyProfilePage() {
     const navigate = useNavigate();
@@ -17,7 +17,11 @@ export function MyProfilePage() {
     }, [user, navigate]);
 
     return (
-        <Loader />
+        <PageLayout
+            renderHeader={() => <NavBarLeft />}
+            renderFooter={() => <NavBarRight />}
+            renderMain={() => <Loader />}
+        />
     )
 }
 

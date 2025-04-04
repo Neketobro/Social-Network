@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { Box, CircularProgress } from '@mui/material';
 import { NavBarRight, NavBarLeft, PageLayout, Loader } from '../../components';
 import { CreatePost } from '../../layout';
 import { selectUserLogin } from '../../store';
