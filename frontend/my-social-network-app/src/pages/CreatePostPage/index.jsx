@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { Box, CircularProgress } from '@mui/material';
-import { NavBarRight, NavBarLeft, PageLayout } from '../../components';
+import { NavBarRight, NavBarLeft, PageLayout, Loader } from '../../components';
 import { CreatePost } from '../../layout';
 import { selectUserLogin } from '../../store';
 
@@ -10,7 +10,7 @@ export function CreatePostPage() {
     const navigate = useNavigate();
     const isUser = useSelector(selectUserLogin);
     const isLoading = isUser === undefined;
-    
+
     useEffect(() => {
         if (!isUser || Object.keys(isUser).length === 0) {
             navigate("/login");
@@ -23,13 +23,11 @@ export function CreatePostPage() {
             renderFooter={() => <NavBarRight />}
             renderMain={() =>
                 isLoading ? (
-                    <Box display="flex" justifyContent="center" mt={4}>
-                        <CircularProgress />
-                    </Box>
+                    <Loader />
                 ) : isUser && Object.keys(isUser).length > 0 ? (
                     <CreatePost isUser={isUser} />
                 ) : (
-                    <CircularProgress />
+                    <Loader />
                 )
             }
         />

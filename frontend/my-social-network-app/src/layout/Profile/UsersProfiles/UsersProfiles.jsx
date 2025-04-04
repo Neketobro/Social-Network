@@ -4,11 +4,6 @@ export function UsersProfile({ users, isUser }) {
     const allUsers = [{ title: 'All users:' }, { title: isUser ? 'Followers:' : null },]
     let followers;
 
-    // console.log('before users -> ', users);
-    // console.log('isUser -> ', isUser);
-
-    // if (!isUser || !users) return;
-
     function filterUser() {
         if (isUser) {
             followers = users.filter(user => isUser.subscribers.includes(user.id));
@@ -21,7 +16,7 @@ export function UsersProfile({ users, isUser }) {
     return (
         <>
             {users && Object.keys(users).length !== 0 ? allUsers.map(({ title }, id) => (
-                <Box key={id} sx={{ width: '100%',}}>
+                <Box key={id} sx={{ width: '100%', }}>
                     <Typography variant="h5" component='h5' align='center' sx={{ border: isUser ? '1px solid' : 'none', borderColor: 'divider', borderRadius: '10px' }}>
                         {title}
                     </Typography>

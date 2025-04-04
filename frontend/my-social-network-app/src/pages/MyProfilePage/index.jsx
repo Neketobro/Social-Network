@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUserLogin } from "../../store";
-import { CircularProgress, Container } from "@mui/material";
+import { Loader } from "../../components";
 
 export function MyProfilePage() {
     const navigate = useNavigate();
@@ -17,9 +17,7 @@ export function MyProfilePage() {
     }, [user, navigate]);
 
     return (
-        <Container sx={{ width: '100%', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <CircularProgress />
-        </Container>
+        <Loader />
     )
 }
 

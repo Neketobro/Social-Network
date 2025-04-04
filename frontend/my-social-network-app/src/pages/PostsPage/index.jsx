@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, CircularProgress, Typography } from "@mui/material";
-import { NavBarLeft, NavBarRight, PageLayout } from '../../components';
+import { Typography } from "@mui/material";
+import { Loader, NavBarLeft, NavBarRight, PageLayout } from '../../components';
 import { Posts } from '../../layout';
 import { FETCH_USERS, POST_RESPONE, selectPost, selectPostStatus, selectUsers, selectUsersStatus } from "../../store";
 
@@ -32,9 +32,7 @@ export function PostsPage() {
             renderFooter={NavBarRight}
             renderMain={() =>
                 isLoading ? (
-                    <Box display="flex" justifyContent="center" mt={4}>
-                        <CircularProgress />
-                    </Box>
+                    <Loader />
                 ) : isError ? (
                     <>
                         <Typography variant="h5" component="h5" color="error">
