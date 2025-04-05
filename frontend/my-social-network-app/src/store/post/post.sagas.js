@@ -33,7 +33,7 @@ export function* postResponeSaga({ payload }) {
 
     if (status === "loading") return;
     try {
-        yield call(addPost, payload);        
+        yield call(addPost, payload);
 
         yield put(POST_RESPONE_SUCCESS());
     } catch (e) {
@@ -49,10 +49,7 @@ export function* postResponeDeleteSaga({ payload }) {
         if (status === "loading") return;
         const response = yield call(deletePost, payload);
 
-        console.log('response -> ', response);
-        
-
-        yield put(POST_RESPONE_DELETE_SUCCESS());
+        yield put(POST_RESPONE_SUCCESS(response.data));
     } catch (e) {
         console.log(e);
         yield put(POST_RESPONE_ERROR());
@@ -65,7 +62,7 @@ export function* fetchPostUserSaga({ payload }) {
 
     if (status === 'loading') return;
     try {
-        const response = yield call(getPostUser, payload);        
+        const response = yield call(getPostUser, payload);
 
         yield put(POST_RESPONE_SUCCESS(response));
     } catch (e) {
@@ -73,7 +70,7 @@ export function* fetchPostUserSaga({ payload }) {
         yield put(POST_RESPONE_ERROR());
     }
 }
-    
+
 export function* watchPostResponeSagas() {
     yield takeLatest(POST_RESPONE, fetchPostsSaga);
     yield takeLatest(POST_RESPONE_ADD, postResponeSaga);

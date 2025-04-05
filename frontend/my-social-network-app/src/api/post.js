@@ -9,6 +9,6 @@ export async function addPost(payload) {
 export async function getPostUser({ userId }) {
     return await post(`/posts/${userId}`, JSON.stringify({ userId }));
 }
-export async function deletePost(postId) {
+export async function deletePost({ postId }) {
     return await del(`/posts/${postId}`);
 }

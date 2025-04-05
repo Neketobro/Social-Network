@@ -68,7 +68,7 @@ server.post("/users", (req, res) => {
 
 // запит на пости які є у юзера
 server.post("/posts/:userId", (req, res) => {
-  const { userId } = req.params;  
+  const { userId } = req.params;
 
   if (!userId) {
     return res.status(400).json({ error: "userId is required." });
@@ -76,7 +76,7 @@ server.post("/posts/:userId", (req, res) => {
 
   try {
     const posts = getPosts();
-    const userPosts = posts.filter(post => post.userId === userId);    
+    const userPosts = posts.filter(post => post.userId === userId);
 
     return res.status(200).json(userPosts);
   } catch (err) {
@@ -87,22 +87,35 @@ server.post("/posts/:userId", (req, res) => {
 
 // видалення постів
 server.delete("/posts/:postId", (req, res) => {
-  const { postId } = req.params;  
+  const { postId } = req.params;
 
   try {
-    const db = JSON.parse(fs.readFileSync(dbFile, "UTF-8"));
+    const db = JSON.parse(fs.readFileSync(dbFile, "utf-8"));
     const posts = db.posts || [];
 
-    const filteredPosts = posts.filter((post) => post.id !== postId);
+    // Знаходимо пост, який видаляємо
+    const postToDelete = posts.find((post) => post.id === postId);
 
-    if (posts.length === filteredPosts.length) {
+    if (!postToDelete) {
       return res.status(404).json({ error: "Post not found." });
     }
 
-    db.posts = filteredPosts;
+    const { userId } = postToDelete;
+
+    // Видаляємо пост
+    const updatedPosts = posts.filter((post) => post.id !== postId);
+    db.posts = updatedPosts;
+
     fs.writeFileSync(dbFile, JSON.stringify(db, null, 2));
 
-    return res.status(200).json({ message: "Post deleted successfully." });
+    // Отримуємо оновлені пости цього юзера
+    const userPosts = updatedPosts.filter((post) => post.userId === userId);
+    
+    return res.status(200).json({
+      message: "Post deleted successfully.",
+      userId,
+      data: userPosts,
+    });
   } catch (err) {
     console.error("Error deleting post:", err);
     return res.status(500).json({ error: "Internal server error." });
