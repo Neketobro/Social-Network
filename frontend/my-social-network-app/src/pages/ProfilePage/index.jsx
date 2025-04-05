@@ -11,13 +11,13 @@ export function ProfilePage() {
     const dispatch = useDispatch()
     const user = useSelector(selectUser);
     const isUser = useSelector(selectUserLogin);
-    const posts = useSelector(selectPost);    
-    
+    const posts = useSelector(selectPost);
+
     useEffect(() => {
         dispatch(FETCH_USER_PROTECTED_DATA());
         dispatch(FETCH_USER({ userId: id }))
         dispatch(FETCH_POST({ userId: id }))
-    }, [])
+    }, [id, dispatch])
 
     return (
         <PageLayout
