@@ -134,12 +134,6 @@
   "posts": [
     {
       "userId": "userId_2",
-      "id": "postId_501c137d-6769-43e3-bb2d-24b228354d1f",
-      "content": "Mya",
-      "img": "https://media.4-paws.org/c/1/7/8/c178dd618346079f9b96edeacc30563b8de72fb4/Molly_006-2829x1886-2726x1886-1920x1328.webp"
-    },
-    {
-      "userId": "userId_2",
       "id": "postId_7fe0b0dd-ef54-43ad-8be5-fc30c5d38718",
       "content": "This is small cats",
       "img": "https://www.bluecross.org.uk/sites/default/files/d8/styles/theme_feature_extra_large/public/2022-03/BX153925_Bromsgrove-2021-10-18-1684.jpg.webp?itok=9nJ4NfMp"

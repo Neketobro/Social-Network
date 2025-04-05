@@ -1,9 +1,11 @@
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography, Snackbar, Alert } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { DELETE_POST, selectPostStatus } from "../../../store";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useParams } from "react-router";
 
 export function PostCardUser({ isUser, posts }) {
+    const { id } = useParams();
     const [open, setOpen] = useState(false)
     const dispatch = useDispatch();
     const postStatus = useSelector(selectPostStatus);
@@ -69,7 +71,7 @@ export function PostCardUser({ isUser, posts }) {
                                 }}
                                 disableSpacing
                             >
-                                {isUser &&
+                                {isUser && isUser.id === id &&
                                     <>
                                         <Button
                                             loading={open}

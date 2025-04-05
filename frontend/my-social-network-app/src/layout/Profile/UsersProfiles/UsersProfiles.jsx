@@ -18,10 +18,10 @@ export function UsersProfile({ users, isUser }) {
         <>
             {users && Object.keys(users).length !== 0 ? allUsers.map(({ title }, id) => (
                 <Box key={id} sx={{ width: '100%', }}>
-                    <Typography variant="h5" component='h5' align='center' sx={{ border: isUser ? '1px solid' : 'none', borderColor: 'divider', borderRadius: '10px' }}>
+                    <Typography variant="h5" component='h5' align='center'>
                         {title}
                     </Typography>
-                    <Box sx={{ paddingBlock: '20px', display: 'flex', alignItems: 'center', justifyContent: users && Object.keys(users).length > 4 ? 'space-between' : 'flex-start', flexWrap: 'wrap', gap: 10 }}>
+                    <Box sx={{ paddingBlock: '20px', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', flexWrap: 'wrap', gap: 10 }}>
                         {users && Object.keys(users).length > 0 && (
                             users.map(({ id, profile_picture_letter, first_name, last_name }) => (
                                 <NavLink to={`/profile/${id}`} key={id} style={{ textDecoration: 'none' }}>

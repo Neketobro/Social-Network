@@ -14,7 +14,7 @@ export function ButtonDivider() {
 
     return (
         <>
-            <Button onClick={toggleDrawer(true)} variant='outlined' sx={{ width: '100%', height: '6vh', border: 'none', borderBottom: '1px solid', borderColor: 'divider', borderRadius: '0' }}>
+            <Button onClick={toggleDrawer(true)} variant='outlined' sx={{ width: '100%', height: '60px', border: 'none', borderBottom: '1px solid', borderColor: 'divider', borderRadius: '0' }}>
                 {!isUser ? 'LOGIN' : (Object.keys(isUser).length > 0) ? (
                     <>
                         <Avatar>
