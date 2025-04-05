@@ -1,5 +1,5 @@
 import { Container } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectPostStatus, selectUserStatus } from "../../store";
 import { Loader } from "../../components";
 import { InfoCardUser } from "./InfoCardUser";
@@ -10,9 +10,6 @@ export function Profile({ isUser, user, posts }) {
     const [loading, setLoading] = useState(false);
     const userStatus = useSelector(selectUserStatus);
     const postStatus = useSelector(selectPostStatus);
-
-    console.log('isUser -> ', isUser);
-    
 
     useEffect(() => {
         if (userStatus === 'success' && postStatus === 'success') {

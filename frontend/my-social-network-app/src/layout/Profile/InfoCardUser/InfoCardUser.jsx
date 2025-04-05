@@ -2,7 +2,7 @@ import { Avatar, Box, Typography } from "@mui/material";
 
 export function InfoCardUser({ isUser, user, posts }) {
 
-    console.log('info isUser -> ', isUser);
+    // console.log('info isUser -> ', isUser);
     
     return (
         <>

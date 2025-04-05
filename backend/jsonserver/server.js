@@ -4,6 +4,7 @@ const express = require("express");
 const fs = require("fs");
 const cors = require("cors");
 const { request } = require("http");
+const { log } = require("console");
 
 const server = express();
 server.use(cors());
@@ -29,16 +30,19 @@ const getPosts = () => {
   return db.posts || [];
 };
 
+// Отримання користувачів
 server.get("/users", (req, res) => {
   const users = getUsers();
   res.json(users) || [];
 })
 
+// Отримання постів
 server.get("/posts", (req, res) => {
   const posts = getPosts();
   res.json(posts) || [];
 })
 
+// Отримання Користувача
 server.post("/users", (req, res) => {
   const { userId } = req.body;
 
@@ -62,8 +66,9 @@ server.post("/users", (req, res) => {
   }
 })
 
-server.post("/posts", (req, res) => {
-  const { userId } = req.body;
+// запит на пости які є у юзера
+server.post("/posts/:userId", (req, res) => {
+  const { userId } = req.params;  
 
   if (!userId) {
     return res.status(400).json({ error: "userId is required." });
@@ -71,7 +76,8 @@ server.post("/posts", (req, res) => {
 
   try {
     const posts = getPosts();
-    const userPosts = posts.filter(post => post.userId === userId);
+    const userPosts = posts.filter(post => post.userId === userId);    
+
     return res.status(200).json(userPosts);
   } catch (err) {
     console.error("Error fetching user posts:", err);
@@ -79,9 +85,31 @@ server.post("/posts", (req, res) => {
   }
 });
 
+// видалення постів
+server.delete("/posts/:postId", (req, res) => {
+  const { postId } = req.params;  
 
-// Авторизація
+  try {
+    const db = JSON.parse(fs.readFileSync(dbFile, "UTF-8"));
+    const posts = db.posts || [];
 
+    const filteredPosts = posts.filter((post) => post.id !== postId);
+
+    if (posts.length === filteredPosts.length) {
+      return res.status(404).json({ error: "Post not found." });
+    }
+
+    db.posts = filteredPosts;
+    fs.writeFileSync(dbFile, JSON.stringify(db, null, 2));
+
+    return res.status(200).json({ message: "Post deleted successfully." });
+  } catch (err) {
+    console.error("Error deleting post:", err);
+    return res.status(500).json({ error: "Internal server error." });
+  }
+});
+
+// Створення поста
 server.post("/posts", (req, res) => {
   const posts = getPosts();
   const { userId, id, content, img } = req.body;
@@ -109,7 +137,7 @@ server.post("/posts", (req, res) => {
   }
 });
 
-
+//  Авторизація
 server.post("/login", (req, res) => {
   const { email, password } = req.body;
 

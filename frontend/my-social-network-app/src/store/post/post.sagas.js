@@ -7,7 +7,8 @@ import {
     POST_RESPONE_ERROR,
     POST_RESPONE_ADD,
     DELETE_POST,
-    FETCH_POST
+    FETCH_POST,
+    POST_RESPONE_DELETE_SUCCESS
 } from "./post.action.js";
 import { selectPostStatus } from "./post.slice.js";
 
@@ -32,7 +33,7 @@ export function* postResponeSaga({ payload }) {
 
     if (status === "loading") return;
     try {
-        yield call(addPost, payload);
+        yield call(addPost, payload);        
 
         yield put(POST_RESPONE_SUCCESS());
     } catch (e) {
@@ -48,8 +49,7 @@ export function* postResponeDeleteSaga({ payload }) {
         if (status === "loading") return;
         yield call(deletePost, payload);
 
-        yield put(POST_RESPONE_SUCCESS());
-        yield put(POST_RESPONE());
+        yield put(POST_RESPONE_DELETE_SUCCESS());
     } catch (e) {
         console.log(e);
         yield put(POST_RESPONE_ERROR());

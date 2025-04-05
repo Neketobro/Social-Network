@@ -3,6 +3,7 @@ import {
     POST_RESPONE_LOADING,
     POST_RESPONE_SUCCESS,
     POST_RESPONE_ERROR,
+    POST_RESPONE_DELETE_SUCCESS
 } from "./post.action.js";
 
 const initialState = {
@@ -26,6 +27,9 @@ const postSlice = createSlice({
             .addCase(POST_RESPONE_SUCCESS, (state, { payload }) => {
                 state.status = "success";
                 state.post = payload;
+            })
+            .addCase(POST_RESPONE_DELETE_SUCCESS, (state) => {
+                state.status = "success";
             })
             .addCase(POST_RESPONE_ERROR, (state, { payload }) => {
                 state.status = "error";

@@ -1,11 +1,14 @@
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { DELETE_POST } from "../../../store";
+import { useDispatch, useSelector } from "react-redux";
+import { DELETE_POST, FETCH_POST, selectPostStatus } from "../../../store";
+import { useParams } from "react-router";
+import { useEffect } from "react";
 
 export function PostCardUser({ isUser, posts }) {
+    const { id } = useParams();
     const dispatch = useDispatch();
-    console.log('post isUser ->', isUser);
 
+    // console.log('post isUser ->', isUser);
 
     const handleDelete = (postId) => {
         dispatch(DELETE_POST(postId));
