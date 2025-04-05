@@ -1,4 +1,5 @@
 import { Avatar, Box, Typography } from "@mui/material";
+import { NavLink } from 'react-router-dom';
 
 export function UsersProfile({ users, isUser }) {
     const allUsers = [{ title: 'All users:' }, { title: isUser ? 'Followers:' : null },]
@@ -23,14 +24,16 @@ export function UsersProfile({ users, isUser }) {
                     <Box sx={{ paddingBlock: '20px', display: 'flex', alignItems: 'center', justifyContent: users && Object.keys(users).length > 4 ? 'space-between' : 'flex-start', flexWrap: 'wrap', gap: 10 }}>
                         {users && Object.keys(users).length > 0 && (
                             users.map(({ id, profile_picture_letter, first_name, last_name }) => (
-                                <Box key={id} sx={{ padding: '10px', minWidth: '5vw', width: '13vw', height: '8vh', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 5, border: '1px solid', borderColor: 'divider', borderRadius: '10px', }}>
-                                    <Avatar>
-                                        {profile_picture_letter}
-                                    </Avatar>
-                                    <Typography fontSize='1.4rem' noWrap='true' sx={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                        {`${first_name}  ${last_name}`}
-                                    </Typography>
-                                </Box>
+                                <NavLink to={`/profile/${id}`} key={id} style={{ textDecoration: 'none' }}>
+                                    <Box sx={{ padding: '10px', minWidth: '5vw', width: '13vw', height: '8vh', color: 'text.primary', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 5, border: '1px solid', borderColor: 'divider', borderRadius: '10px', }}>
+                                        <Avatar>
+                                            {profile_picture_letter}
+                                        </Avatar>
+                                        <Typography fontSize='1.4rem' noWrap='true' sx={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                            {`${first_name}  ${last_name}`}
+                                        </Typography>
+                                    </Box>
+                                </NavLink>
                             ))
                         )}
                     </Box>

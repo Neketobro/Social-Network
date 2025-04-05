@@ -20,14 +20,6 @@ const routerConfig = [
 
         ],
       },
-      // { path: '/myprofile', element: <MyProfilePage /> },
-      // {
-      //   path: '/profile',
-      // children: [
-      //   { index: true, element: <PostsPage /> },
-      //   { path: ':id', element: <ProfilePage /> },
-      // ],
-      // },
     ],
   },
 ];

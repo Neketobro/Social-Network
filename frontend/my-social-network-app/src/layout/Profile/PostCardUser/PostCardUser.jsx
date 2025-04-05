@@ -72,6 +72,7 @@ export function PostCardUser({ isUser, posts }) {
                                 {isUser &&
                                     <>
                                         <Button
+                                            loading={open}
                                             variant='contained'
                                             sx={{ borderRadius: '0 0 10px 10px', color: 'text.secondary' }}
                                             onClick={() => handleDelete(post.id)}
