@@ -13,6 +13,7 @@ export function CreatePost({ isUser }) {
     const postStatus = useSelector(selectPostStatus)
     const [isError, setIsError] = useState('');
     const [open, setOpen] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [post, setPost] = useState({
         userId: isUser.id,
         id: `postId_${uuidv4()}`,
@@ -40,11 +41,10 @@ export function CreatePost({ isUser }) {
 
         dispatch(POST_RESPONE_ADD(post));
 
-        setPost({ id: `postId_${uuidv4()}`, content: '', img: '' });
+        setPost({ id: `postId_${uuidv4()}`, content: '', img: '' });      
+        setLoading(true);
 
-        console.log('createPost page postStatus => ', postStatus);
-        
-
+        console.log('after postStatus ->', postStatus);
         if (postStatus === 'success' || postStatus === 'error') setOpen(true);
         setTimeout(() => {
             setOpen(false);
@@ -62,7 +62,7 @@ export function CreatePost({ isUser }) {
             setIsError("");
         }
         setPreview(post);
-    }
+    }    
 
     return (
         <Container sx={{ maxWidth: '600px', mt: 3 }}>
@@ -88,7 +88,7 @@ export function CreatePost({ isUser }) {
                     onChange={handleChange}
                     sx={{ mb: 2 }}
                 />
-                <Button type="submit" variant="contained" sx={{ mr: 2 }}>Create Post</Button>
+                <Button type="submit" loading={loading} variant="contained" sx={{ mr: 2 }}>Create Post</Button>
                 <Button type="button" variant="outlined" onClick={previewHandler}>Preview</Button>
             </Box>
 

@@ -1,10 +1,11 @@
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography, Snackbar, Alert } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { DELETE_POST, FETCH_POST, selectPostStatus } from "../../../store";
 import { useParams } from "react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export function PostCardUser({ isUser, posts }) {
+    const [open, setOpen] = useState(false)
     const { id } = useParams();
     const dispatch = useDispatch();
     const postStatus = useSelector(selectPostStatus);
@@ -14,9 +15,28 @@ export function PostCardUser({ isUser, posts }) {
 
         if (postStatus === "success") {
             console.log('post was deleted')
+            setOpen(true)
+
+            setTimeout(() => {
+                setOpen(false)
+            }, 2500)
         };
 
     };
+
+    const SnakbarMessage = () => {
+        return (
+            <Snackbar open={open}>
+                <Alert
+                    severity={postStatus}
+                    variant="filled"
+                    sx={{ width: '100%' }}
+                >
+                    {`Post create - ${postStatus}!`}
+                </Alert>
+            </Snackbar>
+        )
+    }
 
     return (
         <>
@@ -69,6 +89,7 @@ export function PostCardUser({ isUser, posts }) {
                 ) : (
                     <Typography sx={{ textAlign: 'center', color: 'text.secondary' }}>No posts available</Typography>
                 )}
+                <SnakbarMessage />
             </Box>
         </>
     )
