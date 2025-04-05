@@ -7,11 +7,21 @@ import { useEffect } from "react";
 export function PostCardUser({ isUser, posts }) {
     const { id } = useParams();
     const dispatch = useDispatch();
+    const postStatus = useSelector(selectPostStatus);
+
+    // console.log('postStatus =-> ', postStatus);
+    
 
     // console.log('post isUser ->', isUser);
 
     const handleDelete = (postId) => {
         dispatch(DELETE_POST(postId));
+
+        if (postStatus === "success") {
+            console.log('post was deleted')
+
+        };
+        
     };
 
     return (

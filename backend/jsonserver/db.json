@@ -158,8 +158,38 @@
     },
     {
       "userId": "userId_1",
-      "id": "postId_20dfe782-7335-49a2-8e80-06139b2e8feb",
-      "content": "test 2 ",
+      "id": "postId_8e558a13-35b7-412c-9d46-e62f71b168ed",
+      "content": "test for delete 1",
+      "img": ""
+    },
+    {
+      "userId": "userId_1",
+      "id": "postId_c002608a-502c-49a6-9843-6fc46c41bbcc",
+      "content": "test for delete 2",
+      "img": ""
+    },
+    {
+      "userId": "userId_1",
+      "id": "postId_7151d69d-169f-4735-a58c-0fadf8aea04e",
+      "content": "test for delete 3",
+      "img": ""
+    },
+    {
+      "userId": "userId_1",
+      "id": "postId_24608276-e733-4521-89c6-10ebe529afcc",
+      "content": "sdfsdf",
+      "img": ""
+    },
+    {
+      "userId": "userId_1",
+      "id": "postId_95fd6061-8f24-408d-a790-24a5a8ba3a0e",
+      "content": "Test",
+      "img": ""
+    },
+    {
+      "userId": "userId_1",
+      "id": "postId_754dcbd2-f01e-4081-989a-3ea6093fe3ca",
+      "content": "testing navigate",
       "img": ""
     }
   ]

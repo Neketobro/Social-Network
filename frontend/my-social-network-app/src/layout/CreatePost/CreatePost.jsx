@@ -1,12 +1,14 @@
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 import { Box, Container, Typography, TextField, Button, Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Snackbar, Alert } from "@mui/material";
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 import TurnedInNotRoundedIcon from '@mui/icons-material/TurnedInNotRounded';
-import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
 import { POST_RESPONE_ADD, selectPostStatus } from "../../store";
-import { useState } from "react";
 
 export function CreatePost({ isUser }) {
+    const navigate = useNavigate()
     const dispatch = useDispatch();
     const postStatus = useSelector(selectPostStatus)
     const [isError, setIsError] = useState('');
@@ -40,10 +42,16 @@ export function CreatePost({ isUser }) {
 
         setPost({ id: `postId_${uuidv4()}`, content: '', img: '' });
 
+        console.log('createPost page postStatus => ', postStatus);
+        
+
         if (postStatus === 'success' || postStatus === 'error') setOpen(true);
         setTimeout(() => {
             setOpen(false);
-        }, 3000)
+        }, 1000);
+        setTimeout(() => {
+            navigate('/');
+        }, 1500);
     };
 
     function previewHandler() {

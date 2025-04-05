@@ -47,7 +47,10 @@ export function* postResponeDeleteSaga({ payload }) {
     const status = select(selectPostStatus);
     try {
         if (status === "loading") return;
-        yield call(deletePost, payload);
+        const response = yield call(deletePost, payload);
+
+        console.log('response -> ', response);
+        
 
         yield put(POST_RESPONE_DELETE_SUCCESS());
     } catch (e) {
