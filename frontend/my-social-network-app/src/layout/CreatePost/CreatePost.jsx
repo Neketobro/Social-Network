@@ -44,7 +44,6 @@ export function CreatePost({ isUser }) {
         setPost({ id: `postId_${uuidv4()}`, content: '', img: '' });      
         setLoading(true);
 
-        console.log('after postStatus ->', postStatus);
         if (postStatus === 'success' || postStatus === 'error') setOpen(true);
         setTimeout(() => {
             setOpen(false);

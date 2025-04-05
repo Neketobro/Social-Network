@@ -27,7 +27,7 @@ export const getDesignTokens = (mode) => ({
           // DARK
 
           primary: {
-            main: 'rgb(148, 204, 241)',
+            main: 'rgb(147, 62, 226)',
           },
           secondary: {
             main: 'rgb(248, 252, 254)',

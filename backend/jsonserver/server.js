@@ -89,6 +89,10 @@ server.post("/posts/:userId", (req, res) => {
 server.delete("/posts/:postId", (req, res) => {
   const { postId } = req.params;
 
+  if (!postId) {
+    return res.status(400).json({ error: "postId is required." });
+  }
+
   try {
     const db = JSON.parse(fs.readFileSync(dbFile, "utf-8"));
     const posts = db.posts || [];
@@ -101,6 +105,10 @@ server.delete("/posts/:postId", (req, res) => {
     }
 
     const { userId } = postToDelete;
+
+    if (!userId) {
+      return res.status(400).json({ error: "userId is required." });
+    }
 
     // Видаляємо пост
     const updatedPosts = posts.filter((post) => post.id !== postId);

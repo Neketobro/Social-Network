@@ -18,6 +18,7 @@ const postSlice = createSlice({
     selectors: {
         selectPost: (state) => state.post || [],
         selectPostStatus: (state) => state.status,
+        selectPostError: (state) => state.error,
     },
     extraReducers: (builder) => {
         builder
@@ -40,4 +41,4 @@ const postSlice = createSlice({
 
 export default postSlice.reducer;
 
-export const { selectPost, selectPostStatus } = postSlice.selectors;
+export const { selectPost, selectPostStatus, selectPostError } = postSlice.selectors;
