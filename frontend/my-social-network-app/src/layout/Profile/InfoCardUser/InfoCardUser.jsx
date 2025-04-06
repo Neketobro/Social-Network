@@ -1,9 +1,13 @@
 import { Avatar, Box, Typography } from "@mui/material";
+import { SubscribeButton } from "./SubscribeButton";
+import { useParams } from "react-router";
 
 export function InfoCardUser({ isUser, user, posts }) {
 
     // console.log('info isUser -> ', isUser);
-    
+    // console.log('info user -> ', user);
+    // console.log('info posts -> ', posts);
+
     return (
         <>
             {user && Object.keys(user).length > 0 ? (
@@ -31,6 +35,7 @@ export function InfoCardUser({ isUser, user, posts }) {
                         <Typography sx={{ fontSize: '1rem' }}>
                             {user.bio}
                         </Typography>
+                        {isUser && <SubscribeButton isUser={isUser} user={user} />}
                     </Box>
                 </Box>
             ) : (

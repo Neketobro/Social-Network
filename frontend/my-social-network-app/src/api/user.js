@@ -14,8 +14,13 @@ export async function isUserLogin({ email, password }) {
 //     return await post(`/users`, payload);
 // }
 
-// export async function addFriend(payload) {
-//     console.log('payload', payload);
-//     // return await patch(`/users`, payload);
-// }
+export async function addSubscriber({ payload }) {
+    const { userId, subscriber } = payload;
+    return await patch(`/users/${userId}/subscribe`, JSON.stringify(subscriber));
+}
+
+export async function deleteSubscriber({ payload }) {
+    const { userId, subscriber } = payload;
+    return await patch(`/users/${userId}/unsubscribe`, JSON.stringify(subscriber));
+}
 

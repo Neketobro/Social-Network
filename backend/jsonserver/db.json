@@ -36,96 +36,336 @@
     },
     {
       "id": "userId_4",
-      "first_name": "Nick",
-      "last_name": "Roobkin",
-      "email": "NickRoobkin@example.com",
-      "password": "NickRoobkin",
-      "profile_picture_letter": "N",
-      "bio": "Hi, I'm Nick. Love coding and traveling!",
+      "first_name": "Liam",
+      "last_name": "Kowalski",
+      "email": "LiamKowalski@example.com",
+      "password": "LiamKowalski123",
+      "profile_picture_letter": "L",
+      "bio": "Tech enthusiast, always curious about how things work.",
       "subscribers": [
         "userId_1"
       ]
     },
     {
       "id": "userId_5",
-      "first_name": "Nick",
-      "last_name": "Roobkin",
-      "email": "NickRoobkin@example.com",
-      "password": "NickRoobkin",
-      "profile_picture_letter": "N",
-      "bio": "Hi, I'm Nick. Love coding and traveling!",
+      "first_name": "Emma",
+      "last_name": "Novak",
+      "email": "EmmaNovak@example.com",
+      "password": "EmmaNovak456",
+      "profile_picture_letter": "E",
+      "bio": "Traveler, reader, and amateur photographer.",
       "subscribers": [
         "userId_1"
       ]
     },
     {
       "id": "userId_6",
-      "first_name": "Nick",
-      "last_name": "Roobkin",
-      "email": "NickRoobkin@example.com",
-      "password": "NickRoobkin",
+      "first_name": "Noah",
+      "last_name": "Petrov",
+      "email": "NoahPetrov@example.com",
+      "password": "NoahPetrov789",
       "profile_picture_letter": "N",
-      "bio": "Hi, I'm Nick. Love coding and traveling!",
+      "bio": "Full-time developer, part-time pizza lover.",
       "subscribers": [
         "userId_1"
       ]
     },
     {
       "id": "userId_7",
-      "first_name": "Nick",
-      "last_name": "Roobkin",
-      "email": "NickRoobkin@example.com",
-      "password": "NickRoobkin",
-      "profile_picture_letter": "N",
-      "bio": "Hi, I'm Nick. Love coding and traveling!",
+      "first_name": "Olivia",
+      "last_name": "Stark",
+      "email": "OliviaStark@example.com",
+      "password": "OliviaStark321",
+      "profile_picture_letter": "O",
+      "bio": "Love design, clean code, and good coffee.",
       "subscribers": [
         "userId_1"
       ]
     },
     {
       "id": "userId_8",
-      "first_name": "Nick",
-      "last_name": "Roobkin",
-      "email": "NickRoobkin@example.com",
-      "password": "NickRoobkin",
-      "profile_picture_letter": "N",
-      "bio": "Hi, I'm Nick. Love coding and traveling!",
+      "first_name": "Lucas",
+      "last_name": "Ilyin",
+      "email": "LucasIlyin@example.com",
+      "password": "LucasIlyin654",
+      "profile_picture_letter": "L",
+      "bio": "Dream big, build bigger. Currently building web apps.",
       "subscribers": [
         "userId_1"
       ]
     },
     {
       "id": "userId_9",
-      "first_name": "Nick",
-      "last_name": "Roobkin",
-      "email": "NickRoobkin@example.com",
-      "password": "NickRoobkin",
-      "profile_picture_letter": "N",
-      "bio": "Hi, I'm Nick. Love coding and traveling!",
+      "first_name": "Ava",
+      "last_name": "Kravets",
+      "email": "AvaKravets@example.com",
+      "password": "AvaKravets987",
+      "profile_picture_letter": "A",
+      "bio": "UI/UX designer turned frontend developer.",
       "subscribers": [
         "userId_1"
       ]
     },
     {
       "id": "userId_10",
-      "first_name": "Nick",
-      "last_name": "Roobkin",
-      "email": "NickRoobkin@example.com",
-      "password": "NickRoobkin",
-      "profile_picture_letter": "N",
-      "bio": "Hi, I'm Nick. Love coding and traveling!",
+      "first_name": "Ethan",
+      "last_name": "Melnyk",
+      "email": "EthanMelnyk@example.com",
+      "password": "EthanMelnyk456",
+      "profile_picture_letter": "E",
+      "bio": "Just a guy who loves JavaScript and late-night coding.",
       "subscribers": [
         "userId_1"
       ]
     },
     {
       "id": "userId_11",
-      "first_name": "Nick",
-      "last_name": "Roobkin",
-      "email": "NickRoobkin@example.com",
-      "password": "NickRoobkin",
-      "profile_picture_letter": "N",
-      "bio": "Hi, I'm Nick. Love coding and traveling!",
+      "first_name": "Sophia",
+      "last_name": "Bondar",
+      "email": "SophiaBondar@example.com",
+      "password": "SophiaBondar321",
+      "profile_picture_letter": "S",
+      "bio": "Always learning something new. Life is code!",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_12",
+      "first_name": "Mia",
+      "last_name": "Horvat",
+      "email": "MiaHorvat@example.com",
+      "password": "MiaHorvat123",
+      "profile_picture_letter": "M",
+      "bio": "Front-end dev who loves animation and aesthetics.",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_13",
+      "first_name": "William",
+      "last_name": "Zaytsev",
+      "email": "WilliamZaytsev@example.com",
+      "password": "WilliamZaytsev456",
+      "profile_picture_letter": "W",
+      "bio": "React is life. Football on weekends.",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_14",
+      "first_name": "Isabella",
+      "last_name": "Moroz",
+      "email": "IsabellaMoroz@example.com",
+      "password": "IsabellaMoroz789",
+      "profile_picture_letter": "I",
+      "bio": "Designer by day, gamer by night.",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_15",
+      "first_name": "James",
+      "last_name": "Kovach",
+      "email": "JamesKovach@example.com",
+      "password": "JamesKovach321",
+      "profile_picture_letter": "J",
+      "bio": "Builder of things, breaker of bugs.",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_16",
+      "first_name": "Charlotte",
+      "last_name": "Tkachenko",
+      "email": "CharlotteTkachenko@example.com",
+      "password": "CharlotteTkachenko654",
+      "profile_picture_letter": "C",
+      "bio": "Music, art, and clean CSS.",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_17",
+      "first_name": "Benjamin",
+      "last_name": "Ivanov",
+      "email": "BenjaminIvanov@example.com",
+      "password": "BenjaminIvanov987",
+      "profile_picture_letter": "B",
+      "bio": "Passionate about clean code and open source.",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_18",
+      "first_name": "Amelia",
+      "last_name": "Shevchenko",
+      "email": "AmeliaShevchenko@example.com",
+      "password": "AmeliaShevchenko456",
+      "profile_picture_letter": "A",
+      "bio": "Frontend developer with a taste for minimalism.",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_19",
+      "first_name": "Logan",
+      "last_name": "Pavlenko",
+      "email": "LoganPavlenko@example.com",
+      "password": "LoganPavlenko321",
+      "profile_picture_letter": "L",
+      "bio": "I break things to learn how to fix them.",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_20",
+      "first_name": "Harper",
+      "last_name": "Khmara",
+      "email": "HarperKhmara@example.com",
+      "password": "HarperKhmara654",
+      "profile_picture_letter": "H",
+      "bio": "Code, coffee, and cats.",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_21",
+      "first_name": "Elijah",
+      "last_name": "Demchenko",
+      "email": "ElijahDemchenko@example.com",
+      "password": "ElijahDemchenko987",
+      "profile_picture_letter": "E",
+      "bio": "Full-stack in progress. Always hungry for learning.",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_22",
+      "first_name": "Evelyn",
+      "last_name": "Shulha",
+      "email": "EvelynShulha@example.com",
+      "password": "EvelynShulha123",
+      "profile_picture_letter": "E",
+      "bio": "Art and tech blend perfectly in web design.",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_23",
+      "first_name": "Henry",
+      "last_name": "Kotsyubynsky",
+      "email": "HenryKotsyubynsky@example.com",
+      "password": "HenryKotsyubynsky456",
+      "profile_picture_letter": "H",
+      "bio": "Dreamer. Developer. Debugger.",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_24",
+      "first_name": "Abigail",
+      "last_name": "Kozak",
+      "email": "AbigailKozak@example.com",
+      "password": "AbigailKozak789",
+      "profile_picture_letter": "A",
+      "bio": "Building beautiful UIs one line at a time.",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_25",
+      "first_name": "Alexander",
+      "last_name": "Martynenko",
+      "email": "AlexanderMartynenko@example.com",
+      "password": "AlexanderMartynenko321",
+      "profile_picture_letter": "A",
+      "bio": "Node.js explorer and database tinkerer.",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_26",
+      "first_name": "Emily",
+      "last_name": "Drahomanova",
+      "email": "EmilyDrahomanova@example.com",
+      "password": "EmilyDrahomanova654",
+      "profile_picture_letter": "E",
+      "bio": "Keeping things clean — from UI to code.",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_27",
+      "first_name": "Daniel",
+      "last_name": "Mazurenko",
+      "email": "DanielMazurenko@example.com",
+      "password": "DanielMazurenko987",
+      "profile_picture_letter": "D",
+      "bio": "React Native fan and Android enthusiast.",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_28",
+      "first_name": "Grace",
+      "last_name": "Sydorenko",
+      "email": "GraceSydorenko@example.com",
+      "password": "GraceSydorenko456",
+      "profile_picture_letter": "G",
+      "bio": "Sketch to screen — I make interfaces real.",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_29",
+      "first_name": "Matthew",
+      "last_name": "Khmil",
+      "email": "MatthewKhmil@example.com",
+      "password": "MatthewKhmil321",
+      "profile_picture_letter": "M",
+      "bio": "Taming bugs since 2018.",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_30",
+      "first_name": "Chloe",
+      "last_name": "Bondarchuk",
+      "email": "ChloeBondarchuk@example.com",
+      "password": "ChloeBondarchuk654",
+      "profile_picture_letter": "C",
+      "bio": "CSS magician and HTML purist.",
+      "subscribers": [
+        "userId_1"
+      ]
+    },
+    {
+      "id": "userId_31",
+      "first_name": "Sebastian",
+      "last_name": "Varenytsia",
+      "email": "SebastianVarenytsia@example.com",
+      "password": "SebastianVarenytsia987",
+      "profile_picture_letter": "S",
+      "bio": "From bugs to features — I turn chaos into order.",
       "subscribers": [
         "userId_1"
       ]
@@ -143,6 +383,18 @@
       "id": "postId_7651ddd3-3cbc-4165-98a9-b816b386a0ad",
       "content": "this cat is lazy",
       "img": "https://www.cdc.gov/healthy-pets/media/images/2024/04/Cat-on-couch.jpg"
+    },
+    {
+      "userId": "userId_4",
+      "id": "postId_55d253b5-eb09-492e-93c6-38c4ee35a2d1",
+      "content": "Nap time is sacred.",
+      "img": "https://www.alleycat.org/wp-content/uploads/2019/03/FELV-cat.jpg"
+    },
+    {
+      "userId": "userId_4",
+      "id": "postId_0b3f1f03-88f8-44b1-a113-2032fd19feec",
+      "content": "Nap time is sacred.",
+      "img": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6"
     }
   ]
 }

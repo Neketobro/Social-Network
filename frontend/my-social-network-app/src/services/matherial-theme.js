@@ -8,7 +8,7 @@ export const getDesignTokens = (mode) => ({
           // LIGHT
 
           primary: {
-            main: 'rgb(148, 204, 241)', // Блакитний
+            main: 'rgb(106, 186, 240)', // Блакитний
           },
           secondary: {
             main: 'rgb(248, 252, 254)', // Світло-блакитний

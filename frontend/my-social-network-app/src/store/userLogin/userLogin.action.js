@@ -12,5 +12,5 @@ export const FETCH_USER_PROTECTED_DATA_SUCCESS = createAction("fetch/user/protec
 
 export const FETCH_USER_REGISTER = createAction("fetch/user/register");
 
-export const USER_ADD_SUBSCRIDERS = createAction("user/add/subscribers");
-export const USER_DELETE_SUBSCRIDERS = createAction("user/delete/subscribers");
+export const USER_ADD_SUBSCRIBERS = createAction("user/add/subscribers");
+export const USER_DELETE_SUBSCRIBERS = createAction("user/delete/subscribers");

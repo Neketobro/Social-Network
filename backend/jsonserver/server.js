@@ -66,6 +66,73 @@ server.post("/users", (req, res) => {
   }
 })
 
+// Підписка на користувача
+server.patch("/users/:id/subscribe", (req, res) => {
+  const { id } = req.params;
+  const { subscriberId } = req.body;
+
+  try {
+    const db = JSON.parse(fs.readFileSync(dbFile, "utf-8"));
+    const users = db.users || [];
+
+    const userIndex = users.findIndex(user => user.id === id);
+    if (userIndex === -1) {
+      return res.status(404).json({ error: "User not found." });
+    }
+
+    const currentSubscribers = users[userIndex].subscribers || [];
+    if (!currentSubscribers.includes(subscriberId)) {
+      currentSubscribers.push(subscriberId);
+    }
+
+    users[userIndex].subscribers = currentSubscribers;
+
+    fs.writeFileSync(dbFile, JSON.stringify(db, null, 2));
+
+    return res.status(200).json({
+      message: `User ${subscriberId} subscribed to ${id}`,
+      user: users[userIndex]
+    });
+  } catch (err) {
+    console.error("Error subscribing user:", err);
+    return res.status(500).json({ error: "Internal server error." });
+  }
+});
+
+// Відписка від користувача
+server.patch("/users/:id/unsubscribe", (req, res) => {
+  const { id } = req.params;
+  const { currentUserId } = req.body;
+
+  if (!currentUserId || !id) {
+    return res.status(400).json({ error: "Both user IDs are required." });
+  }
+
+  try {
+    const db = JSON.parse(fs.readFileSync(dbFile, "utf-8"));
+    const users = db.users;
+
+    const targetUser = users.find((u) => u.id === id);
+    if (!targetUser) {
+      return res.status(404).json({ error: "Target user not found." });
+    }
+
+    targetUser.subscribers = targetUser.subscribers.filter(
+      (subscriberId) => subscriberId !== currentUserId
+    );
+
+    fs.writeFileSync(dbFile, JSON.stringify(db, null, 2));
+    return res.status(200).json({
+      message: "Unsubscribed successfully",
+      userId: id,
+      updatedSubscribers: targetUser.subscribers,
+    });
+  } catch (err) {
+    console.error("Error during unsubscribe:", err);
+    return res.status(500).json({ error: "Internal server error." });
+  }
+});
+
 // запит на пости які є у юзера
 server.post("/posts/:userId", (req, res) => {
   const { userId } = req.params;
@@ -118,7 +185,7 @@ server.delete("/posts/:postId", (req, res) => {
 
     // Отримуємо оновлені пости цього юзера
     const userPosts = updatedPosts.filter((post) => post.userId === userId);
-    
+
     return res.status(200).json({
       message: "Post deleted successfully.",
       userId,
