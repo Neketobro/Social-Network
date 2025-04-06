@@ -4,7 +4,9 @@ import {
     FETCH_USER_LOGIN_SUCCESS,
     FETCH_USER_LOGIN_ERROR,
     FETCH_USER_PROTECTED_DATA_SUCCESS,
-    FETCH_USER_PROTECTED_DATA_ERROR
+    FETCH_USER_PROTECTED_DATA_ERROR,
+    FETCH_USER_REGISTER_SUCCESS,
+    FETCH_USER_REGISTER_ERROR
 } from "./userLogin.action";
 
 const initialState = {
@@ -36,6 +38,13 @@ const userLoginSlice = createSlice({
                 state.status = "error";
                 state.error = payload;
             })
+            .addCase(FETCH_USER_REGISTER_SUCCESS, (state) => {
+                state.status = "error";
+            })
+            .addCase(FETCH_USER_REGISTER_ERROR, (state, { payload }) => {
+                state.status = "error";
+                state.error = payload;
+            })
             .addCase(FETCH_USER_PROTECTED_DATA_SUCCESS, (state, { payload }) => {
                 state.status = "success";
                 state.userLogin = payload;
@@ -44,6 +53,11 @@ const userLoginSlice = createSlice({
                 state.status = "error";
                 state.error = payload;
             });
+
+        // FETCH_USER_PROTECTED_DATA_ERROR
+        // FETCH_USER_PROTECTED_DATA_SUCCESS
+        // FETCH_USER_REGISTER_SUCCESS
+        // FETCH_USER_REGISTER_ERROR
     },
 })
 

@@ -1,12 +1,7 @@
 import { Avatar, Box, Typography } from "@mui/material";
 import { SubscribeButton } from "./SubscribeButton";
-import { useParams } from "react-router";
 
 export function InfoCardUser({ isUser, user, posts }) {
-
-    // console.log('info isUser -> ', isUser);
-    // console.log('info user -> ', user);
-    // console.log('info posts -> ', posts);
 
     return (
         <>

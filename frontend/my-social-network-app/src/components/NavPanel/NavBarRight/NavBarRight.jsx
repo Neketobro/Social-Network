@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import { UsersPanel } from "./UsersPanel";
 import { Loader } from '../../../components';
 
-
 export function NavBarRight() {
     const dispatch = useDispatch();
     const isOpen = useSelector(selectNavPanel);

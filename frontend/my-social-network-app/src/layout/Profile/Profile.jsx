@@ -1,5 +1,5 @@
 import { Container } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectPostStatus, selectUserStatus } from "../../store";
 import { Loader } from "../../components";
 import { InfoCardUser } from "./InfoCardUser";

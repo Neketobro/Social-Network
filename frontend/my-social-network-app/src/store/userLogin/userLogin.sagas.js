@@ -1,4 +1,4 @@
-import { isUserLogin, fetchProtectedData, addSubscriber, deleteSubscriber } from "../../api/index.js";
+import { isUserLogin, fetchProtectedData, addSubscriber, deleteSubscriber, regIsUser } from "../../api/index.js";
 import { put, call, takeLatest } from 'redux-saga/effects';
 import {
     FETCH_USER_LOGIN,
@@ -10,7 +10,9 @@ import {
     USER_DELETE_SUBSCRIBERS,
     FETCH_USER_PROTECTED_DATA_ERROR,
     FETCH_USER_PROTECTED_DATA_SUCCESS,
-    FETCH_USER_PROTECTED_DATA
+    FETCH_USER_PROTECTED_DATA,
+    FETCH_USER_REGISTER_SUCCESS,
+    FETCH_USER_REGISTER_ERROR
 } from "./userLogin.action.js";
 
 export function* fetchUsersLoginSaga({ payload }) {
@@ -63,7 +65,7 @@ export function* addSubscribersSaga(payload) {
         yield put(FETCH_USER_PROTECTED_DATA());
     } catch (e) {
         console.log(e);
-        yield put(FETCH_USER_PROTECTED_DATA_ERROR());
+        yield put(FETCH_USER_LOGIN_ERROR());
     }
 }
 
@@ -74,11 +76,24 @@ export function* deleteSubscribersSaga(payload) {
 
     try {
         yield call(deleteSubscriber, payload);
-        
+
         yield put(FETCH_USER_PROTECTED_DATA());
     } catch (e) {
         console.log(e);
-        yield put(FETCH_USER_PROTECTED_DATA_ERROR());
+        yield put(FETCH_USER_LOGIN_ERROR());
+    }
+}
+
+export function* registerUserSaga({ payload }) {
+    yield put(FETCH_USER_LOGIN_LOADING());
+
+    try {
+        const response = yield call(regIsUser, payload);
+
+        yield put(FETCH_USER_REGISTER_SUCCESS());
+    } catch (e) {
+        console.log(e);
+        yield put(FETCH_USER_REGISTER_ERROR());
     }
 }
 
@@ -87,4 +102,5 @@ export function* watchFetchUserLoginSagas() {
     yield takeLatest(FETCH_USER_PROTECTED_DATA, fetchProtectedDataSaga);
     yield takeLatest(USER_ADD_SUBSCRIBERS, addSubscribersSaga);
     yield takeLatest(USER_DELETE_SUBSCRIBERS, deleteSubscribersSaga);
+    yield takeLatest(FETCH_USER_REGISTER, registerUserSaga);
 }

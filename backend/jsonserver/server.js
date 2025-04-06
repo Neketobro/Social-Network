@@ -42,6 +42,41 @@ server.get("/posts", (req, res) => {
   res.json(posts) || [];
 })
 
+// Реєстрація користувачів
+server.post("/users/register", (req, res) => {  
+  const { first_name, last_name, email, password, bio, id, profile_picture_letter} = req.body;
+
+  // Перевірка, чи всі дані надані
+  if (!first_name || !last_name || !email || !password || !id || !profile_picture_letter) {
+    return res.status(400).json({ error: "All fields are required." });
+  }
+
+  // Перевірка на унікальність email
+  const users = getUsers();
+  if (users.some(user => user.email === email)) {
+    return res.status(400).json({ error: "Email already in use." });
+  }
+
+  const newUser = {
+    id,
+    first_name,
+    last_name,
+    email,
+    password,
+    bio,
+    profile_picture_letter,
+    subscribers: [],
+  };
+
+  // Додавання нового користувача до бази
+  const db = JSON.parse(fs.readFileSync(dbFile, "UTF-8"));
+  db.users.push(newUser);
+  fs.writeFileSync(dbFile, JSON.stringify(db, null, 2));
+
+  return res.status(201).json({ message: "User registered successfully", user: newUser });
+});
+
+
 // Отримання Користувача
 server.post("/users", (req, res) => {
   const { userId } = req.body;
