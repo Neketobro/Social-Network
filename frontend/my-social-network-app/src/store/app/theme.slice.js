@@ -1,15 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { LIGHT_THEME } from '../../services/constants';
 
+const savedTheme = localStorage.getItem('theme');
 const initialState = {
-  theme: LIGHT_THEME,
+  theme: savedTheme ? savedTheme : LIGHT_THEME,
 };
+
 const themeSlice = createSlice({
   name: 'theme',
   initialState,
   reducers: {
     setTheme: (state, { payload }) => {
       state.theme = payload;
+      localStorage.setItem('theme', payload);
     },
   },
   selectors: {
