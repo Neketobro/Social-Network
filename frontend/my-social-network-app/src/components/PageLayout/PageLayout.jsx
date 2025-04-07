@@ -19,16 +19,34 @@ export function PageLayout({
         minHeight: '100vh ',
       }}
     >
-      <Box component="header" sx={{ flex: !isOpen ? 0.5 : 1, height: 'auto', transition: '.4s all', }}>
+      <Box
+        component="header"
+        sx={{ flex: !isOpen ? 0.5 : 1, height: 'auto', transition: '.4s all' }}
+      >
         {typeof renderHeader === 'function' ? renderHeader() : renderHeader}
       </Box>
       <Box
         component="main"
-        sx={{ flex: !isOpen ? 6 : 7, height: 'auto', paddingBlock: '20px', transition: '.4s all', marginLeft: !isOpen ? '50px' : '110px', marginRight: !isOpen ? '25px' : '50px' }}
+        sx={{
+          flex: !isOpen ? 6 : 7,
+          height: 'auto',
+          paddingBlock: '20px',
+          transition: '.4s all',
+          marginLeft: !isOpen ? '50px' : '110px',
+          marginRight: !isOpen ? '25px' : '50px',
+        }}
       >
         {renderMain ? renderMain() : children}
       </Box>
-      <Box component="footer" sx={{ flex: !isOpen ? 1.5 : 1, height: 'auto', transition: '.4s all', maxWidth: !isOpen ? 200 : 150 }}>
+      <Box
+        component="footer"
+        sx={{
+          flex: !isOpen ? 1.5 : 1,
+          height: 'auto',
+          transition: '.4s all',
+          maxWidth: !isOpen ? 200 : 150,
+        }}
+      >
         {typeof renderFooter === 'function' ? renderFooter() : renderFooter}
       </Box>
     </Box>

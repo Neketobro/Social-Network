@@ -1,4 +1,4 @@
-import createSagaMiddleware from "redux-saga";
+import createSagaMiddleware from 'redux-saga';
 import { configureStore } from '@reduxjs/toolkit';
 import { rootSaga } from './root.saga.js';
 import themeReducer from './app/theme.slice.js';
@@ -22,6 +22,6 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) => [
     ...getDefaultMiddleware({ thunk: false, serializableCheck: false }),
     sagaMiddleware,
-  ]
+  ],
 });
 sagaMiddleware.run(rootSaga);

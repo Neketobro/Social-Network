@@ -1,1 +1,1 @@
-export * from './UsersPanel.jsx'
+export * from './UsersPanel.jsx';

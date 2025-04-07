@@ -77,33 +77,35 @@ export function NavBarLeft() {
           >
             <img src={Logo} alt="Loop" width={150} />
           </Box>
-          {!isMobile && <Button
-            variant="text"
-            onClick={() => dispatch(setOpen())}
-            sx={{
-              textDecoration: 'none',
-              fontSize: '1em',
-              color: 'text.primary',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 4,
-              fontWeight: 'bold',
-              width: '100%',
-              justifyContent: 'flex-start',
-              padding: 0,
-              margin: 0,
-              minHeight: '48px',
-            }}
-          >
-            {isOpen ? (
-              <MenuOpenRoundedIcon sx={{ fontSize: '2rem' }} />
-            ) : (
-              <MenuRoundedIcon sx={{ fontSize: '2rem' }} />
-            )}
-            <Collapse in={isOpen} orientation="horizontal">
-              Toggle
-            </Collapse>
-          </Button>}
+          {!isMobile && (
+            <Button
+              variant="text"
+              onClick={() => dispatch(setOpen())}
+              sx={{
+                textDecoration: 'none',
+                fontSize: '1em',
+                color: 'text.primary',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 4,
+                fontWeight: 'bold',
+                width: '100%',
+                justifyContent: 'flex-start',
+                padding: 0,
+                margin: 0,
+                minHeight: '48px',
+              }}
+            >
+              {isOpen ? (
+                <MenuOpenRoundedIcon sx={{ fontSize: '2rem' }} />
+              ) : (
+                <MenuRoundedIcon sx={{ fontSize: '2rem' }} />
+              )}
+              <Collapse in={isOpen} orientation="horizontal">
+                Toggle
+              </Collapse>
+            </Button>
+          )}
           {navLinks.map(({ icon, text, url }, key) => (
             <NavLink to={url} key={key} style={{ textDecoration: 'none' }}>
               <Box

@@ -1,1 +1,1 @@
-export * from './CreatePost.jsx'
+export * from './CreatePost.jsx';

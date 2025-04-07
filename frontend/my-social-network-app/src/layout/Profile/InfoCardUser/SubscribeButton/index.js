@@ -1,1 +1,1 @@
-export * from './SubscribeButton.jsx'
+export * from './SubscribeButton.jsx';

@@ -1,9 +1,4 @@
-import {
-  ListItemIcon,
-  ListItemButton,
-  List,
-  ListItem,
-} from '@mui/material';
+import { ListItemIcon, ListItemButton, List, ListItem } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { DARK_THEME, LIGHT_THEME } from '../../../../services';
 import { selectTheme, setTheme } from '../../../../store';

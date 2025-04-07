@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 const baseURL = import.meta.env.VITE_BASE_DB_URL;
 const axiosConf = (signal) =>
@@ -6,7 +6,7 @@ const axiosConf = (signal) =>
     baseURL,
     signal,
     headers: {
-      "Content-type": "application/json",
+      'Content-type': 'application/json',
     },
     timeout: 2000,
   });
@@ -21,20 +21,20 @@ const genericRequest = async ({ requestType, url, data, signal }) => {
     if (axios.isAxiosError(e) && e.response) {
       return e.response.data;
     } else {
-      throw new Error("Unknown error.");
+      throw new Error('Unknown error.');
     }
   }
 };
 
 export const get = (url, signal) => {
-  return genericRequest({ requestType: "get", url, signal });
+  return genericRequest({ requestType: 'get', url, signal });
 };
 export const post = (url, data) => {
-  return genericRequest({ requestType: "post", url, data });
+  return genericRequest({ requestType: 'post', url, data });
 };
 export const del = (url) => {
-  return genericRequest({ requestType: "delete", url });
+  return genericRequest({ requestType: 'delete', url });
 };
 export const patch = (url, data) => {
-  return genericRequest({ requestType: "patch", url, data });
+  return genericRequest({ requestType: 'patch', url, data });
 };

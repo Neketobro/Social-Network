@@ -1,21 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    open: null,
+  open: null,
 };
 const navPanelSlice = createSlice({
-    name: 'navPanel',
-    initialState,
-    reducers: {
-        setOpen: (state, { payload }) => {
-            state.open = payload !== undefined
-                ? payload
-                : !state.open;
-        }
+  name: 'navPanel',
+  initialState,
+  reducers: {
+    setOpen: (state, { payload }) => {
+      state.open = payload !== undefined ? payload : !state.open;
     },
-    selectors: {
-        selectNavPanel: (state) => state.open,
-    },
+  },
+  selectors: {
+    selectNavPanel: (state) => state.open,
+  },
 });
 
 export const { setOpen } = navPanelSlice.actions;
