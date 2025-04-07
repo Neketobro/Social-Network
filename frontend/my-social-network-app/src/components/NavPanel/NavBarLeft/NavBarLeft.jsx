@@ -1,4 +1,11 @@
-import { Box, Button, Collapse, useMediaQuery } from '@mui/material';
+import {
+  Box,
+  Button,
+  Collapse,
+  useMediaQuery,
+  Popover,
+  Typography,
+} from '@mui/material';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import AddBoxRoundedIcon from '@mui/icons-material/AddBoxRounded';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
@@ -9,19 +16,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectNavPanel, setOpen } from '../../../store';
 import { ThemeToggle } from './ThemeToggle';
 import Logo from '../../../assets/Logo.png';
+import { useState, useCallback } from 'react';
 
 export function NavBarLeft() {
   const isOpen = useSelector(selectNavPanel);
   const dispatch = useDispatch();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [popoverText, setPopoverText] = useState('');
 
   const isMobile = useMediaQuery('(max-width:600px)');
+  const location = useLocation();
 
   const tabMapping = {
     '/': 0,
     '/createpost': 1,
+    '/profile/myprofile': 2,
   };
-  const location = useLocation();
-
   const currentTab = tabMapping[location.pathname] ?? false;
 
   const navLinks = [
@@ -41,6 +51,18 @@ export function NavBarLeft() {
       url: '/profile/myprofile',
     },
   ];
+
+  const handlePopoverOpen = useCallback((event, text) => {
+    setPopoverText(text);
+    setAnchorEl(event.currentTarget);
+  }, []);
+
+  const handlePopoverClose = useCallback(() => {
+    setAnchorEl(null);
+    setPopoverText('');
+  }, []);
+
+  const popoverOpen = Boolean(anchorEl) && Boolean(popoverText);
 
   return (
     <Box
@@ -118,7 +140,12 @@ export function NavBarLeft() {
                   fontWeight: 'bold',
                 }}
               >
-                {icon}
+                <Box
+                  onMouseEnter={(e) => !isOpen && handlePopoverOpen(e, text)}
+                  onMouseLeave={handlePopoverClose}
+                >
+                  {icon}
+                </Box>
                 <Collapse in={isOpen} orientation="horizontal">
                   {text}
                 </Collapse>
@@ -127,6 +154,23 @@ export function NavBarLeft() {
           ))}
         </Box>
       </Collapse>
+      <Popover
+        sx={{ pointerEvents: 'none' }}
+        open={popoverOpen}
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+        onClose={handlePopoverClose}
+        disableRestoreFocus
+      >
+        <Typography sx={{ p: 1 }}>{popoverText}</Typography>
+      </Popover>
       <ThemeToggle />
     </Box>
   );
