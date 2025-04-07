@@ -8,7 +8,6 @@ import {
   POST_RESPONE_ADD,
   DELETE_POST,
   FETCH_POST,
-  POST_RESPONE_DELETE_SUCCESS,
 } from './post.action.js';
 import { selectPostStatus } from './post.slice.js';
 

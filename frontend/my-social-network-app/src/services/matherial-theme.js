@@ -5,13 +5,11 @@ export const getDesignTokens = (mode) => ({
     mode,
     ...(mode === LIGHT_THEME
       ? {
-          // LIGHT
-
           primary: {
-            main: 'rgb(106, 186, 240)', // Блакитний
+            main: 'rgb(106, 186, 240)',
           },
           secondary: {
-            main: 'rgb(248, 252, 254)', // Світло-блакитний
+            main: 'rgb(248, 252, 254)',
           },
           background: {
             default: 'rgb(255, 255, 255)',
@@ -24,8 +22,6 @@ export const getDesignTokens = (mode) => ({
           divider: 'rgb(211, 211, 211)',
         }
       : {
-          // DARK
-
           primary: {
             main: 'rgb(147, 62, 226)',
           },
@@ -55,14 +51,3 @@ export const getDesignTokens = (mode) => ({
     },
   },
 });
-
-// rgb(255, 255, 255)
-// rgb(245, 243, 244)
-// rgb(211, 211, 211)
-// rgb(177, 167, 166)
-// rgb(229, 56, 59)
-// rgb(186, 24, 27)
-// rgb(164, 22, 26)
-// rgb(102, 7, 8)
-// rgb(22, 26, 29)
-// rgb(11, 9, 10)

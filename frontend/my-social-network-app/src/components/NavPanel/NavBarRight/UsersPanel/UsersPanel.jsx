@@ -7,10 +7,8 @@ import { useSelector } from 'react-redux';
 export const UsersPanel = React.memo(({ users, isUser }) => {
   const isOpen = useSelector(selectNavPanel);
 
-  // Мемоїзуємо список усіх користувачів
   const allUsers = useMemo(() => users, [users]);
 
-  // Мемоїзуємо список підписників (followers)
   const followersList = useMemo(() => {
     return isUser && isUser.subscribers
       ? users.filter((user) => isUser.subscribers.includes(user.id))
@@ -28,7 +26,6 @@ export const UsersPanel = React.memo(({ users, isUser }) => {
         gap: 5,
       }}
     >
-      {/* Секція "View all users" */}
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <NavLink to="/profile" style={{ textDecoration: 'none' }}>
           <Typography
@@ -91,8 +88,6 @@ export const UsersPanel = React.memo(({ users, isUser }) => {
               ))}
         </Box>
       </Box>
-
-      {/* Секція "Followers:" відображається лише, якщо є isUser */}
       {isUser && (
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <NavLink to="/profile" style={{ textDecoration: 'none' }}>

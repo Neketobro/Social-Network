@@ -53,11 +53,6 @@ const userLoginSlice = createSlice({
         state.status = 'error';
         state.error = payload;
       });
-
-    // FETCH_USER_PROTECTED_DATA_ERROR
-    // FETCH_USER_PROTECTED_DATA_SUCCESS
-    // FETCH_USER_REGISTER_SUCCESS
-    // FETCH_USER_REGISTER_ERROR
   },
 });
 

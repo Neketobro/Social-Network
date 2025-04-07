@@ -11,14 +11,10 @@ import {
   CardHeader,
   CardMedia,
   CardContent,
-  CardActions,
   Avatar,
-  IconButton,
   Snackbar,
   Alert,
 } from '@mui/material';
-import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
-import TurnedInNotRoundedIcon from '@mui/icons-material/TurnedInNotRounded';
 import { v4 as uuidv4 } from 'uuid';
 import { POST_RESPONE_ADD, selectPostStatus } from '../../store';
 
