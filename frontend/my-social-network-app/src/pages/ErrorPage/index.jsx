@@ -13,7 +13,7 @@ export function ErrorPage() {
                     <Typography component='p' variant="h1">Error 404</Typography>
                     <Typography component='p' variant="h2">Page not found</Typography>
                     <NavLink to='/'>
-                        <Button variant='outlined' >Come back home page</Button>
+                        <Button variant='outlined' >Return to the main page</Button>
                     </NavLink>
                 </Box>
             }

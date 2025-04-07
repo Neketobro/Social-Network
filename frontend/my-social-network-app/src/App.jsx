@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './router/index';
-import { Loader } from './components';
+import { ErrorBoundary, Loader } from './components';
 import { getDesignTokens } from './services/matherial-theme.js';
 import { selectTheme } from './store/app';
 
@@ -17,15 +17,17 @@ function App() {
   const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
   return (
-    <ThemeProvider theme={responsiveFontSizes(theme)}>
-      <CssBaseline>
-        <RouterProvider
-          router={router}
-          fallbackElement={<Loader />}
-          future={{ v7_startTransition: true }}
-        />
-      </CssBaseline>
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider theme={responsiveFontSizes(theme)}>
+        <CssBaseline>
+          <RouterProvider
+            router={router}
+            fallbackElement={<Loader />}
+            future={{ v7_startTransition: true }}
+          />
+        </CssBaseline>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 }
 

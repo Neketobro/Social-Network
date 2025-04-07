@@ -24,7 +24,6 @@ export function NavBarLeft() {
 
   const currentTab = tabMapping[location.pathname] ?? false;
 
-
   const navLinks = [
     {
       icon: <HomeRoundedIcon sx={{ fontSize: '2rem' }} />,
