@@ -10,7 +10,7 @@
     "lint:start": "npx eslint src --fix",
     "preview": "vite preview",
     "prettier": "npx prettier . --write",
-    "prod:server": "npx serve dist"
+    "prod:server": "npx serve dist -p 8080"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

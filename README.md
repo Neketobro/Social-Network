@@ -38,7 +38,7 @@ npm run dev
 | `npm run lint`        | Перевіряє код з ESLint                                            |
 | `npm run lint:start`  | Автоматично виправляє ESLint-помилки                              |
 | `npm run prettier`    | Форматує код за допомогою Prettier                                |
-| `npm run prod:server` | Форматує код за допомогою Prettier                                |
+| `npm run prod:server` | Запускає сервер для продакшн-білду з використанням serve.         |
 
 ### Використані технології
 - React 19
