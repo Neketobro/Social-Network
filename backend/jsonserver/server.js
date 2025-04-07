@@ -3,8 +3,6 @@ const jwt = require("jsonwebtoken");
 const express = require("express");
 const fs = require("fs");
 const cors = require("cors");
-const { request } = require("http");
-const { log } = require("console");
 
 const server = express();
 server.use(cors());
