@@ -1,6 +1,5 @@
 {
   "scripts": {
-    "dev": "npx json-server db.json",
     "start": "node server.js"
   },
   "dependencies": {
