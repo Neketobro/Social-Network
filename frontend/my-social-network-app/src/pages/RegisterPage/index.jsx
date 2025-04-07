@@ -25,7 +25,7 @@ export function RegisterPage() {
         return () => {
             controller.abort();
         };
-    }, []);
+    }, [dispatch]);
 
     function validateEmail(email) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);

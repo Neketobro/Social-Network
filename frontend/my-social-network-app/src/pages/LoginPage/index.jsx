@@ -12,8 +12,7 @@ export function LoginPage() {
     const loadingStatus = useSelector(selectUserLoginStatus);
     const [loading, setLoading] = useState(false);
     const emailRef = useRef();
-    const passwordRef = useRef();
-    
+    const passwordRef = useRef();    
 
     useEffect(() => {
         dispatch(FETCH_USER_PROTECTED_DATA());
@@ -53,7 +52,7 @@ export function LoginPage() {
         } else {
             setLoading(false);
         };
-    }, [loadingStatus])
+    }, [loadingStatus, error])
     
     return (
         <Container sx={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

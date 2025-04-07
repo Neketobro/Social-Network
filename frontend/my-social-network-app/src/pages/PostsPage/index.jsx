@@ -20,7 +20,7 @@ export function PostsPage() {
         return () => {
             controller.abort();
         };
-    }, []);
+    }, [dispatch]);
 
     const isLoading = usersStatus === "loading" || postsStatus === "loading";
     const isError = usersStatus === "error" || postsStatus === "error";
