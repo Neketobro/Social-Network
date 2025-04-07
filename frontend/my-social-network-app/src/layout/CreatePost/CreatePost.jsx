@@ -111,14 +111,6 @@ export function CreatePost({ isUser }) {
                                 {preview.content}
                             </Typography>
                         </CardContent>
-                        <CardActions sx={{ borderTop: '1px solid', borderColor: 'divider', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                            <IconButton>
-                                <FavoriteBorderRoundedIcon />
-                            </IconButton>
-                            <IconButton>
-                                <TurnedInNotRoundedIcon />
-                            </IconButton>
-                        </CardActions>
                     </Card>
                 </Box>
             )}

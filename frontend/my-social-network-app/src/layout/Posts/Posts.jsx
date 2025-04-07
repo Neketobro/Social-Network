@@ -1,4 +1,7 @@
 import { Container, Avatar, Card, CardHeader, CardMedia, CardContent, Typography } from "@mui/material";
+import { NavLink } from 'react-router-dom';
+
+
 
 export function Posts({ users, posts }) {
 
@@ -25,11 +28,17 @@ export function Posts({ users, posts }) {
                             borderRadius: '20px',
                         }}
                     >
-                        <CardHeader
-                            avatar={<Avatar>{profile_picture_letter}</Avatar>}
-                            title={`${first_name} ${last_name}`}
-                        />
-                        {img && <CardMedia component="img" height="500" image={img} alt="Post image" />}
+                        <NavLink to={`/profile/${id}`} style={{ textDecoration: 'none' }}>
+                            <CardHeader
+                                avatar={<Avatar>{profile_picture_letter}</Avatar>}
+                                title={
+                                    <Typography color="text.primary">
+                                        {`${first_name} ${last_name}`}
+                                    </Typography>
+                                }
+                            />
+                            {img && <CardMedia component="img" height="500" image={img} alt="Post image" />}
+                        </NavLink>
                         <CardContent>
                             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                                 {content}

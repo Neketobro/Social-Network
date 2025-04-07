@@ -9,7 +9,8 @@
       "profile_picture_letter": "R",
       "bio": "Hello! I'm Renata, a web developer.",
       "subscribers": [
-        "userId_2"
+        "userId_2",
+        "userId_1157c643-5fbb-40b4-bfc2-78f000be7b18"
       ]
     },
     {
@@ -105,6 +106,19 @@
       "subscribers": [
         "userId_1"
       ]
+    },
+    {
+      "id": "userId_1157c643-5fbb-40b4-bfc2-78f000be7b18",
+      "first_name": "Nikita",
+      "last_name": "Shevtsov",
+      "email": "NikitaShevtsov@example.com",
+      "password": "Shevtsov123",
+      "bio": "Hello! My name is Nikita. I am a future website developer.",
+      "profile_picture_letter": "N",
+      "subscribers": [
+        "userId_1",
+        "userId_2"
+      ]
     }
   ],
   "posts": [
@@ -131,6 +145,18 @@
       "id": "postId_0b3f1f03-88f8-44b1-a113-2032fd19feec",
       "content": "Nap time is sacred.",
       "img": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6"
+    },
+    {
+      "userId": "userId_1157c643-5fbb-40b4-bfc2-78f000be7b18",
+      "id": "postId_b7df7ead-7e8d-4cab-b1f7-fef43935a98e",
+      "content": "If you're looking to buy a sports car, you're going to want something that's great fun to drive, whether that's down to speed, the way it goes around corners, or a combination of both.\n",
+      "img": "https://m.atcdn.co.uk/ect/media/w1224/4b14ab0c7868451baf5912779f112f40.jpg"
+    },
+    {
+      "userId": "userId_1157c643-5fbb-40b4-bfc2-78f000be7b18",
+      "id": "postId_f180c9f0-25e5-464c-8271-2513f96f480b",
+      "content": "Running costs for a Mazda MX-5. The MX-5 isn’t as cheap as it used to be, but it’s still decent value when you consider that most other sporty roadsters cost thousands more to buy, and aren’t as much fun to drive. Running costs are reasonably low, too – thanks to the MX-5’s low weight and efficient petrol engines its official fuel consumption and CO2 emissions figures are no higher than for the average family car. Residual values will be strong, while servicing costs aren’t too high and Mazda offers fixed-price servicing packages that allow you budget for maintenance costs. Insurance costs may be a bit pricey, depending on your circumstances, but compared with a similarly priced hatchback or SUV the MX-5 actually makes quite a lot of financial sense.",
+      "img": "https://m.atcdn.co.uk/vms/media/w1224/082cb8c47cb44dfd92f0dd74b100edc9.jpg"
     }
   ]
 }
