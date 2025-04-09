@@ -5,8 +5,6 @@ import {
   Typography,
   TextField,
   Button,
-  Snackbar,
-  Alert,
 } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
@@ -20,9 +18,11 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import { SnackbarAlert } from '../../components/SnackbarAlert/SnackbarAlert';
 
 export function RegisterPage() {
   const [open, setOpen] = useState(false);
+  const [messageAlert, setMessageAlert] = useState('')
   const dispatch = useDispatch();
   const error = useSelector(selectUserLoginError);
   const users = useSelector(selectUsers);
@@ -48,16 +48,20 @@ export function RegisterPage() {
 
   function submitHandler(e) {
     e.preventDefault();
-    const first_name = firstNameRef.current.value;
-    const last_name = lastNameRef.current.value;
-    const email = emailRef.current.value;
-    const password = passwordRef.current.value;
+    const first_name = firstNameRef.current.value.trim();
+    const last_name = lastNameRef.current.value.trim();
+    const email = emailRef.current.value.trim();
+    const password = passwordRef.current.value.trim();
     const bio = bioRef.current.value;
 
     if (!first_name || !last_name) {
       dispatch(
         FETCH_USER_REGISTER_ERROR('First name and last name are required')
       );
+      return;
+    }
+    if (!email) {
+      dispatch(FETCH_USER_REGISTER_ERROR('Email is required'));
       return;
     }
     if (!validateEmail(email)) {
@@ -89,20 +93,17 @@ export function RegisterPage() {
 
     dispatch(FETCH_USER_REGISTER(data));
     setOpen(true);
-    setTimeout(() => {
-      navigate('/login');
-    }, 1000);
   }
 
-  function SnackbarSuccess() {
-    return (
-      <Snackbar open={open}>
-        <Alert severity="success" variant="filled" sx={{ width: '100%' }}>
-          User successfully registered!
-        </Alert>
-      </Snackbar>
-    );
-  }
+  useEffect(() => {
+    if (open) {
+      setMessageAlert('Successfully registered!')
+      const timer = setTimeout(() => {
+        navigate('/login');
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [open, navigate]);
 
   return (
     <Container
@@ -143,7 +144,7 @@ export function RegisterPage() {
         >
           Please fill in the details to create an account
         </Typography>
-        {error && (
+        {!!error && (
           <Typography color="error" sx={{ textAlign: 'center' }}>
             {error}
           </Typography>
@@ -174,7 +175,7 @@ export function RegisterPage() {
             required
           />
           <TextField
-            error={error}
+            error={!!error}
             label="Email"
             variant="outlined"
             inputRef={emailRef}
@@ -182,7 +183,7 @@ export function RegisterPage() {
             required
           />
           <TextField
-            error={error}
+            error={!!error}
             label="Password"
             type="password"
             variant="outlined"
@@ -205,11 +206,11 @@ export function RegisterPage() {
         <Typography sx={{ color: 'text.secondary', textAlign: 'end' }}>
           Already have an account?
           <NavLink to="/login" style={{ textDecoration: 'none' }}>
-            <Button variant="text">Sing in</Button>
+            <Button variant="text">Sign in</Button>
           </NavLink>
         </Typography>
       </Paper>
-      <SnackbarSuccess />
+      <SnackbarAlert open={open} messageAlert={messageAlert} />
     </Container>
   );
 }
