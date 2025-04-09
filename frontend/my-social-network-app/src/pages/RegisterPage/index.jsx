@@ -3,7 +3,6 @@ import {
   Container,
   Paper,
   Typography,
-  TextField,
   Button,
 } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
@@ -19,7 +18,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import { SnackbarAlert } from '../../components/SnackbarAlert/SnackbarAlert';
+import { SnackbarAlert, InputField } from '../../components';
 
 export function RegisterPage() {
   const [open, setOpen] = useState(false);
@@ -31,11 +30,8 @@ export function RegisterPage() {
   const userLoginStatus = useSelector(selectUserLoginStatus);
   const isUser = useSelector(selectUserLogin)
   const navigate = useNavigate();
-  const firstNameRef = useRef();
-  const lastNameRef = useRef();
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const bioRef = useRef();
+
+  const inputsRef = useRef({});
 
   useEffect(() => {
     dispatch(FETCH_USER_PROTECTED_DATA());
@@ -50,18 +46,20 @@ export function RegisterPage() {
   }
 
   const clearForm = () => {
-    [firstNameRef, lastNameRef, emailRef, passwordRef, bioRef].forEach((ref) => {
-      if (ref.current) ref.current.value = '';
+    Object.keys(inputsRef.current).forEach((key) => {
+      if (inputsRef.current[key]) {
+        inputsRef.current[key].value = '';
+      }
     });
   };
 
   function submitHandler(e) {
     e.preventDefault();
-    const first_name = firstNameRef.current.value.trim();
-    const last_name = lastNameRef.current.value.trim();
-    const email = emailRef.current.value.trim();
-    const password = passwordRef.current.value.trim();
-    const bio = bioRef.current.value;
+    const first_name = inputsRef.current.firstName.value.trim();
+    const last_name = inputsRef.current.lastName.value.trim();
+    const email = inputsRef.current.email.value.trim();
+    const password = inputsRef.current.password.value.trim();
+    const bio = inputsRef.current.bio.value;
     setLoading(true);
 
     if (!first_name || !last_name) {
@@ -110,7 +108,7 @@ export function RegisterPage() {
       setMessageAlert('Successfully registered!');
       setSeverity('success');
       setLoading(false);
-      clearForm()
+      clearForm();
       const timer = setTimeout(() => {
         navigate('/login');
       }, 1000);
@@ -184,48 +182,40 @@ export function RegisterPage() {
           }}
           onSubmit={submitHandler}
         >
-          <TextField
+          <InputField
             label="First Name"
-            variant="outlined"
-            inputRef={firstNameRef}
+            inputRef={(el) => (inputsRef.current.firstName = el)}
+            error={!!error}
             onChange={resetErrorOnChange}
-            fullWidth
             required
           />
-          <TextField
+          <InputField
             label="Last Name"
-            variant="outlined"
-            inputRef={lastNameRef}
+            inputRef={(el) => (inputsRef.current.lastName = el)}
+            error={!!error}
             onChange={resetErrorOnChange}
-            fullWidth
             required
           />
-          <TextField
-            error={!!error}
+          <InputField
             label="Email"
-            variant="outlined"
-            inputRef={emailRef}
+            inputRef={(el) => (inputsRef.current.email = el)}
+            error={!!error}
             onChange={resetErrorOnChange}
-            fullWidth
             required
           />
-          <TextField
-            error={!!error}
+          <InputField
             label="Password"
             type="password"
-            variant="outlined"
-            inputRef={passwordRef}
+            inputRef={(el) => (inputsRef.current.password = el)}
+            error={!!error}
             onChange={resetErrorOnChange}
-            fullWidth
             required
           />
-          <TextField
+          <InputField
             label="Bio"
-            variant="outlined"
-            inputRef={bioRef}
-            fullWidth
             multiline
             rows={3}
+            inputRef={(el) => (inputsRef.current.bio = el)}
           />
           <Button variant="contained" type="submit" loading={loading} fullWidth>
             Register
