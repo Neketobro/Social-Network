@@ -12,8 +12,9 @@ import {
   FETCH_USER_REGISTER,
   FETCH_USER_REGISTER_ERROR,
   selectUserLoginError,
-  selectUsers,
-  FETCH_USERS,
+  selectUserLogin,
+  selectUserLoginStatus,
+  FETCH_USER_PROTECTED_DATA
 } from '../../store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -23,9 +24,12 @@ import { SnackbarAlert } from '../../components/SnackbarAlert/SnackbarAlert';
 export function RegisterPage() {
   const [open, setOpen] = useState(false);
   const [messageAlert, setMessageAlert] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [severity, setSeverity] = useState('')
   const dispatch = useDispatch();
   const error = useSelector(selectUserLoginError);
-  const users = useSelector(selectUsers);
+  const userLoginStatus = useSelector(selectUserLoginStatus);
+  const isUser = useSelector(selectUserLogin)
   const navigate = useNavigate();
   const firstNameRef = useRef();
   const lastNameRef = useRef();
@@ -34,17 +38,22 @@ export function RegisterPage() {
   const bioRef = useRef();
 
   useEffect(() => {
-    const controller = new AbortController();
-    dispatch(FETCH_USERS(controller.signal));
-
-    return () => {
-      controller.abort();
-    };
+    dispatch(FETCH_USER_PROTECTED_DATA());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (isUser) navigate('/');
+  }, [isUser, navigate]);
 
   function validateEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
+
+  const clearForm = () => {
+    [firstNameRef, lastNameRef, emailRef, passwordRef, bioRef].forEach((ref) => {
+      if (ref.current) ref.current.value = '';
+    });
+  };
 
   function submitHandler(e) {
     e.preventDefault();
@@ -53,6 +62,7 @@ export function RegisterPage() {
     const email = emailRef.current.value.trim();
     const password = passwordRef.current.value.trim();
     const bio = bioRef.current.value;
+    setLoading(true);
 
     if (!first_name || !last_name) {
       dispatch(
@@ -74,8 +84,8 @@ export function RegisterPage() {
       );
       return;
     }
-    if (users && users.some((user) => user.email === email)) {
-      dispatch(FETCH_USER_REGISTER_ERROR('This email is already in use'));
+    if (!/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(password)) {
+      dispatch(FETCH_USER_REGISTER_ERROR('Password must include at least one uppercase letter and one number'));
       return;
     }
 
@@ -96,14 +106,28 @@ export function RegisterPage() {
   }
 
   useEffect(() => {
-    if (open) {
-      setMessageAlert('Successfully registered!')
+    if (open && !error && userLoginStatus === 'success') {
+      setMessageAlert('Successfully registered!');
+      setSeverity('success');
+      setLoading(false);
+      clearForm()
       const timer = setTimeout(() => {
         navigate('/login');
       }, 1000);
       return () => clearTimeout(timer);
+    } else if (error && userLoginStatus === 'error') {
+      setSeverity('error');
+      setMessageAlert(error);
+      setLoading(false);
     }
-  }, [open, navigate]);
+  }, [open, error, userLoginStatus, navigate]);
+
+  const resetErrorOnChange = () => {
+    if (messageAlert) {
+      setMessageAlert('');
+      setSeverity('');
+    }
+  };
 
   return (
     <Container
@@ -164,6 +188,7 @@ export function RegisterPage() {
             label="First Name"
             variant="outlined"
             inputRef={firstNameRef}
+            onChange={resetErrorOnChange}
             fullWidth
             required
           />
@@ -171,6 +196,7 @@ export function RegisterPage() {
             label="Last Name"
             variant="outlined"
             inputRef={lastNameRef}
+            onChange={resetErrorOnChange}
             fullWidth
             required
           />
@@ -179,6 +205,7 @@ export function RegisterPage() {
             label="Email"
             variant="outlined"
             inputRef={emailRef}
+            onChange={resetErrorOnChange}
             fullWidth
             required
           />
@@ -188,6 +215,7 @@ export function RegisterPage() {
             type="password"
             variant="outlined"
             inputRef={passwordRef}
+            onChange={resetErrorOnChange}
             fullWidth
             required
           />
@@ -199,7 +227,7 @@ export function RegisterPage() {
             multiline
             rows={3}
           />
-          <Button variant="contained" type="submit" fullWidth>
+          <Button variant="contained" type="submit" loading={loading} fullWidth>
             Register
           </Button>
         </Box>
@@ -210,7 +238,7 @@ export function RegisterPage() {
           </NavLink>
         </Typography>
       </Paper>
-      <SnackbarAlert open={open} messageAlert={messageAlert} />
+      <SnackbarAlert open={open} messageAlert={messageAlert} severity={severity} />
     </Container>
   );
 }

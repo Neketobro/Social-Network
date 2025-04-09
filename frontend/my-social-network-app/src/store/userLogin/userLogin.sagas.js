@@ -94,7 +94,12 @@ export function* registerUserSaga({ payload }) {
   yield put(FETCH_USER_LOGIN_LOADING());
 
   try {
-    yield call(regIsUser, payload);
+    const respone = yield call(regIsUser, payload);
+
+    if (respone.error) {
+      yield put(FETCH_USER_REGISTER_ERROR(respone.error));
+      return;
+    }
 
     yield put(FETCH_USER_REGISTER_SUCCESS());
   } catch (e) {

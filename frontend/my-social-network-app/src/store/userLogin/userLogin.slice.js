@@ -33,13 +33,15 @@ const userLoginSlice = createSlice({
       .addCase(FETCH_USER_LOGIN_SUCCESS, (state, { payload }) => {
         state.status = 'success';
         state.userLogin = payload;
+        state.error = null;
       })
       .addCase(FETCH_USER_LOGIN_ERROR, (state, { payload }) => {
         state.status = 'error';
         state.error = payload;
       })
       .addCase(FETCH_USER_REGISTER_SUCCESS, (state) => {
-        state.status = 'error';
+        state.status = 'success';
+        state.error = null;
       })
       .addCase(FETCH_USER_REGISTER_ERROR, (state, { payload }) => {
         state.status = 'error';
@@ -48,6 +50,7 @@ const userLoginSlice = createSlice({
       .addCase(FETCH_USER_PROTECTED_DATA_SUCCESS, (state, { payload }) => {
         state.status = 'success';
         state.userLogin = payload;
+        state.error = null;
       })
       .addCase(FETCH_USER_PROTECTED_DATA_ERROR, (state, { payload }) => {
         state.status = 'error';
