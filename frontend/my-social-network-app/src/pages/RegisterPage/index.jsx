@@ -5,7 +5,7 @@ import {
   Typography,
   Button,
 } from '@mui/material';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback} from 'react';
 import { NavLink } from 'react-router-dom';
 import {
   FETCH_USER_REGISTER,
@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { SnackbarAlert, InputField } from '../../components';
+import { validateEmail } from '../../utils/';
 
 export function RegisterPage() {
   const [open, setOpen] = useState(false);
@@ -30,7 +31,6 @@ export function RegisterPage() {
   const userLoginStatus = useSelector(selectUserLoginStatus);
   const isUser = useSelector(selectUserLogin)
   const navigate = useNavigate();
-
   const inputsRef = useRef({});
 
   useEffect(() => {
@@ -41,9 +41,9 @@ export function RegisterPage() {
     if (isUser) navigate('/');
   }, [isUser, navigate]);
 
-  function validateEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  }
+  const validateEmailCallback = useCallback((email) => {
+    return validateEmail(email);
+  }, []);
 
   const clearForm = () => {
     Object.keys(inputsRef.current).forEach((key) => {
@@ -72,7 +72,7 @@ export function RegisterPage() {
       dispatch(FETCH_USER_REGISTER_ERROR('Email is required'));
       return;
     }
-    if (!validateEmail(email)) {
+    if (!validateEmailCallback(email)) {
       dispatch(FETCH_USER_REGISTER_ERROR('Invalid email format'));
       return;
     }
