@@ -6,7 +6,7 @@ import {
   TextField,
   Button,
 } from '@mui/material';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import {
@@ -17,6 +17,7 @@ import {
   selectUserLogin,
   selectUserLoginStatus,
 } from '../../store';
+import { validateEmail } from '../../utils/';
 
 export function LoginPage() {
   const navigate = useNavigate();
@@ -36,16 +37,16 @@ export function LoginPage() {
     if (isUser) navigate('/');
   }, [isUser, navigate]);
 
-  function validateEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  }
+  const validateEmailCallback = useCallback((email) => {
+    return validateEmail(email);
+  }, []);
 
   function submitHandler(e) {
     e.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
-    if (!validateEmail(email)) {
+    if (!validateEmailCallback(email)) {
       dispatch(FETCH_USER_LOGIN_ERROR('Invalid email format'));
       return;
     }
