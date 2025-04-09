@@ -5,31 +5,27 @@ import {
   Typography,
   Button,
 } from '@mui/material';
-import { useEffect, useRef, useState, useCallback} from 'react';
-import { NavLink } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
-  FETCH_USER_REGISTER,
-  FETCH_USER_REGISTER_ERROR,
   selectUserLoginError,
   selectUserLogin,
   selectUserLoginStatus,
-  FETCH_USER_PROTECTED_DATA
+  FETCH_USER_PROTECTED_DATA,
 } from '../../store';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 import { SnackbarAlert, InputField } from '../../components';
-import { validateEmail } from '../../utils/';
+import { useRegisterHandler } from '../../utils';
 
 export function RegisterPage() {
   const [open, setOpen] = useState(false);
-  const [messageAlert, setMessageAlert] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [severity, setSeverity] = useState('')
+  const [messageAlert, setMessageAlert] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [severity, setSeverity] = useState('');
   const dispatch = useDispatch();
   const error = useSelector(selectUserLoginError);
   const userLoginStatus = useSelector(selectUserLoginStatus);
-  const isUser = useSelector(selectUserLogin)
+  const isUser = useSelector(selectUserLogin);
   const navigate = useNavigate();
   const inputsRef = useRef({});
 
@@ -41,9 +37,7 @@ export function RegisterPage() {
     if (isUser) navigate('/');
   }, [isUser, navigate]);
 
-  const validateEmailCallback = useCallback((email) => {
-    return validateEmail(email);
-  }, []);
+  const { handleRegister } = useRegisterHandler({ inputsRef, setLoading, setOpen });
 
   const clearForm = () => {
     Object.keys(inputsRef.current).forEach((key) => {
@@ -53,55 +47,10 @@ export function RegisterPage() {
     });
   };
 
-  function submitHandler(e) {
+  const submitHandler = (e) => {
     e.preventDefault();
-    const first_name = inputsRef.current.firstName.value.trim();
-    const last_name = inputsRef.current.lastName.value.trim();
-    const email = inputsRef.current.email.value.trim();
-    const password = inputsRef.current.password.value.trim();
-    const bio = inputsRef.current.bio.value;
-    setLoading(true);
-
-    if (!first_name || !last_name) {
-      dispatch(
-        FETCH_USER_REGISTER_ERROR('First name and last name are required')
-      );
-      return;
-    }
-    if (!email) {
-      dispatch(FETCH_USER_REGISTER_ERROR('Email is required'));
-      return;
-    }
-    if (!validateEmailCallback(email)) {
-      dispatch(FETCH_USER_REGISTER_ERROR('Invalid email format'));
-      return;
-    }
-    if (password.length < 6) {
-      dispatch(
-        FETCH_USER_REGISTER_ERROR('Password must be at least 6 characters')
-      );
-      return;
-    }
-    if (!/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(password)) {
-      dispatch(FETCH_USER_REGISTER_ERROR('Password must include at least one uppercase letter and one number'));
-      return;
-    }
-
-    const profile_picture_letter = first_name.charAt(0).toUpperCase();
-
-    const data = {
-      first_name,
-      last_name,
-      email,
-      password,
-      bio,
-      id: `userId_${uuidv4()}`,
-      profile_picture_letter,
-    };
-
-    dispatch(FETCH_USER_REGISTER(data));
-    setOpen(true);
-  }
+    handleRegister();
+  };
 
   useEffect(() => {
     if (open && !error && userLoginStatus === 'success') {
@@ -217,7 +166,7 @@ export function RegisterPage() {
             rows={3}
             inputRef={(el) => (inputsRef.current.bio = el)}
           />
-          <Button variant="contained" type="submit" loading={loading} fullWidth>
+          <Button variant="contained" type="submit" disabled={loading} fullWidth>
             Register
           </Button>
         </Box>

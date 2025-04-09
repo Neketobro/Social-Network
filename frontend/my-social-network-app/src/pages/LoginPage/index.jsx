@@ -17,7 +17,7 @@ import {
   selectUserLogin,
   selectUserLoginStatus,
 } from '../../store';
-import { validateEmail } from '../../utils/';
+import { validateEmail } from '../../utils';
 
 export function LoginPage() {
   const navigate = useNavigate();
