@@ -1,23 +1,14 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Typography } from '@mui/material';
 import { Loader, NavBarLeft, NavBarRight, PageLayout } from '../../components';
 import { Posts } from '../../layout';
-import {
-  FETCH_USERS,
-  POST_RESPONE,
-  selectPost,
-  selectPostStatus,
-  selectUsers,
-  selectUsersStatus,
-} from '../../store';
+import { FETCH_USERS, POST_RESPONE } from '../../store';
+import { usePostsPageStatus } from '../../utils';
 
 export function PostsPage() {
   const dispatch = useDispatch();
-  const users = useSelector(selectUsers) || [];
-  const posts = useSelector(selectPost) || [];
-  const usersStatus = useSelector(selectUsersStatus);
-  const postsStatus = useSelector(selectPostStatus);
+  const { users, posts, isLoading, isError, isEmpty } = usePostsPageStatus();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -28,14 +19,6 @@ export function PostsPage() {
       controller.abort();
     };
   }, [dispatch]);
-
-  const isLoading = usersStatus === 'loading' || postsStatus === 'loading';
-  const isError = usersStatus === 'error' || postsStatus === 'error';
-  const isEmpty =
-    !Array.isArray(users) ||
-    users.length === 0 ||
-    !Array.isArray(posts) ||
-    posts.length === 0;
 
   return (
     <PageLayout
