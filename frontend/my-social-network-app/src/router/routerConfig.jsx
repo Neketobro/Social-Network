@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import {
   PostsPage,
   ErrorPage,
@@ -10,6 +10,13 @@ import {
   RegisterPage,
 } from '../pages';
 
+const isUserToken = () => {
+  return !!localStorage.getItem('authToken');
+};
+const ProtectedRoute = ({ element }) => {
+  return isUserToken() ? element : <Navigate to="/login" />;
+};
+
 const routerConfig = [
   {
     path: '/',
@@ -18,13 +25,13 @@ const routerConfig = [
     children: [
       { index: true, element: <PostsPage /> },
       { path: '/login', element: <LoginPage /> },
-      { path: '/createpost', element: <CreatePostPage /> },
+      { path: '/createpost', element: <ProtectedRoute element={<CreatePostPage />} /> },
       { path: '/register', element: <RegisterPage /> },
       {
         path: '/profile',
         children: [
           { index: true, element: <UsersProfilePage /> },
-          { path: 'myprofile', element: <MyProfilePage /> },
+          { path: 'myprofile', element: <ProtectedRoute element={<MyProfilePage />} /> },
           { path: ':id', element: <ProfilePage /> },
         ],
       },
