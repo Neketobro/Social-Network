@@ -11,7 +11,7 @@ import {
 } from '../pages';
 
 const isUserToken = () => {
-  return !!localStorage.getItem('authToken');
+  return !!localStorage.getItem('token');
 };
 const ProtectedRoute = ({ element }) => {
   return isUserToken() ? element : <Navigate to="/login" />;
