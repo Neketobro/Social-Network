@@ -66,7 +66,12 @@ export const UsersProfile = React.memo(({ users, isUser }) => {
       </Box>
       {isUser && (
         <>
-          <Typography variant="h5" component="h5" align="center" sx={{ mt: 4, mb: 2 }}>
+          <Typography
+            variant="h5"
+            component="h5"
+            align="center"
+            sx={{ mt: 4, mb: 2 }}
+          >
             Followers:
           </Typography>
           <Box

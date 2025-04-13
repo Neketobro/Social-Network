@@ -19,7 +19,7 @@ export function NavBarLeft() {
     '/createpost': 1,
     '/profile/myprofile': 2,
   };
-  const location = useLocation()
+  const location = useLocation();
 
   const currentTab = tabMapping[location.pathname] ?? false;
 

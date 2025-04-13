@@ -16,17 +16,21 @@ export function useSubscribeActions(currentUser, targetUser) {
   }, [userLoginStatus]);
 
   const add = () => {
-    dispatch(USER_ADD_SUBSCRIBERS({
-      userId: currentUser.id,
-      subscriber: { subscriberId: targetUser.id }
-    }));
+    dispatch(
+      USER_ADD_SUBSCRIBERS({
+        userId: currentUser.id,
+        subscriber: { subscriberId: targetUser.id },
+      })
+    );
   };
 
   const remove = () => {
-    dispatch(USER_DELETE_SUBSCRIBERS({
-      userId: currentUser.id,
-      subscriber: { currentUserId: targetUser.id }
-    }));
+    dispatch(
+      USER_DELETE_SUBSCRIBERS({
+        userId: currentUser.id,
+        subscriber: { currentUserId: targetUser.id },
+      })
+    );
   };
 
   return { loading, add, remove };

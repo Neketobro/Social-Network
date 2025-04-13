@@ -1,1 +1,1 @@
-export * from './SnackbarAlert.jsx'
+export * from './SnackbarAlert.jsx';

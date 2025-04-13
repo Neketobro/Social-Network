@@ -1,5 +1,10 @@
 import { useSelector } from 'react-redux';
-import { selectPost, selectPostStatus, selectUsers, selectUsersStatus } from '../../store';
+import {
+  selectPost,
+  selectPostStatus,
+  selectUsers,
+  selectUsersStatus,
+} from '../../store';
 
 export const usePostsPageStatus = () => {
   const users = useSelector(selectUsers);

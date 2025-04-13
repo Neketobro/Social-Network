@@ -2,10 +2,7 @@
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import {
-  FETCH_USER_REGISTER,
-  FETCH_USER_REGISTER_ERROR,
-} from '../../store';
+import { FETCH_USER_REGISTER, FETCH_USER_REGISTER_ERROR } from '../../store';
 import { validateEmail } from '../../utils';
 
 export const useRegisterHandler = ({ inputsRef, setLoading, setOpen }) => {

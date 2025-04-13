@@ -1,10 +1,4 @@
-import {
-  Box,
-  Container,
-  Paper,
-  Typography,
-  Button,
-} from '@mui/material';
+import { Box, Container, Paper, Typography, Button } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,7 +31,11 @@ export function RegisterPage() {
     if (isUser) navigate('/');
   }, [isUser, navigate]);
 
-  const { handleRegister } = useRegisterHandler({ inputsRef, setLoading, setOpen });
+  const { handleRegister } = useRegisterHandler({
+    inputsRef,
+    setLoading,
+    setOpen,
+  });
 
   const clearForm = () => {
     Object.keys(inputsRef.current).forEach((key) => {
@@ -166,7 +164,12 @@ export function RegisterPage() {
             rows={3}
             inputRef={(el) => (inputsRef.current.bio = el)}
           />
-          <Button variant="contained" type="submit" disabled={loading} fullWidth>
+          <Button
+            variant="contained"
+            type="submit"
+            disabled={loading}
+            fullWidth
+          >
             Register
           </Button>
         </Box>
@@ -177,7 +180,11 @@ export function RegisterPage() {
           </NavLink>
         </Typography>
       </Paper>
-      <SnackbarAlert open={open} messageAlert={messageAlert} severity={severity} />
+      <SnackbarAlert
+        open={open}
+        messageAlert={messageAlert}
+        severity={severity}
+      />
     </Container>
   );
 }
