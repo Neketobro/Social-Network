@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom'; // <-- використай Navigate
+import { Navigate } from 'react-router-dom';
 import { NavBarRight, NavBarLeft, PageLayout, Loader } from '../../components';
 import { CreatePost } from '../../layout';
 import { selectUserLogin } from '../../store';
