@@ -1,26 +1,19 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavBarLeft, NavBarRight, PageLayout } from '../../components';
 import { useSelector } from 'react-redux';
 import { selectUserLogin } from '../../store';
-import { NavBarLeft, NavBarRight, PageLayout, Loader } from '../../components';
 
 export function MyProfilePage() {
-  const navigate = useNavigate();
-  const user = useSelector(selectUserLogin);
+  const isUser = useSelector(selectUserLogin);
 
-  // useEffect(() => {
-  //   if (user?.id) {
-  //     navigate(`/profile/${user.id}`);
-  //   } else {
-  //     navigate('/login');
-  //   }
-  // }, [user, navigate]);
+  if (!isUser || !isUser.id) {
+    return <Navigate to="/login" replace />;
+  }
 
   return (
     <PageLayout
       renderHeader={() => <NavBarLeft />}
       renderFooter={() => <NavBarRight />}
-      renderMain={() => <Loader />}
+      renderMain={() =>  <Navigate to={`/profile/${isUser.id}`} replace />}
     />
   );
 }
