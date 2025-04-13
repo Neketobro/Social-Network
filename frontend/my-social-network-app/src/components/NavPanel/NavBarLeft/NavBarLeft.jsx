@@ -1,12 +1,10 @@
 import { Box, Button, Collapse, useMediaQuery } from '@mui/material';
-import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
-import AddBoxRoundedIcon from '@mui/icons-material/AddBoxRounded';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import MenuOpenRoundedIcon from '@mui/icons-material/MenuOpenRounded';
-import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectNavPanel, setOpen } from '../../../store';
+import { navLinks } from '../../../services';
 import { ThemeToggle } from './ThemeToggle';
 import Logo from '../../../assets/Logo.png';
 
@@ -24,24 +22,6 @@ export function NavBarLeft() {
   const location = useLocation()
 
   const currentTab = tabMapping[location.pathname] ?? false;
-
-  const navLinks = [
-    {
-      icon: <HomeRoundedIcon sx={{ fontSize: '2rem' }} />,
-      text: 'Home',
-      url: '/',
-    },
-    {
-      icon: <AddBoxRoundedIcon sx={{ fontSize: '2rem' }} />,
-      text: 'Createpost',
-      url: '/createpost',
-    },
-    {
-      icon: <AccountBoxRoundedIcon sx={{ fontSize: '2rem' }} />,
-      text: 'Profile',
-      url: '/profile/myprofile',
-    },
-  ];
 
   return (
     <Box
