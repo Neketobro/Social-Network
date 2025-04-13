@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 
 export const UsersPanel = React.memo(({ users, isUser }) => {
   const isOpen = useSelector(selectNavPanel);
-
   const allUsers = useMemo(() => users, [users]);
 
   const followersList = useMemo(() => {

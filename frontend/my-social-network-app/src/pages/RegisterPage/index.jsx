@@ -15,7 +15,7 @@ import {
   FETCH_USER_PROTECTED_DATA,
 } from '../../store';
 import { SnackbarAlert, InputField } from '../../components';
-import { useRegisterHandler } from '../../utils';
+import { useRegisterHandler } from '../../services/hooks/useRegisterForm.js';
 
 export function RegisterPage() {
   const [open, setOpen] = useState(false);

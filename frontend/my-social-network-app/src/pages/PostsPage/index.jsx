@@ -4,7 +4,7 @@ import { Typography } from '@mui/material';
 import { Loader, NavBarLeft, NavBarRight, PageLayout } from '../../components';
 import { Posts } from '../../layout';
 import { FETCH_USERS, POST_RESPONE } from '../../store';
-import { usePostsPageStatus } from '../../utils';
+import { usePostsPageStatus } from '../../services/hooks/usePostsPageStatus.js';
 
 export function PostsPage() {
   const dispatch = useDispatch();

@@ -1,67 +1,34 @@
 import { Button } from '@mui/material';
-import {
-  selectUserLoginStatus,
-  USER_ADD_SUBSCRIBERS,
-  USER_DELETE_SUBSCRIBERS,
-} from '../../../../store';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
+import { isSubscribed } from '../../../../utils';
+import { useSubscribeActions } from '../../../../services/hooks/useSubscribeActions.js';
 
 export function SubscribeButton({ isUser, user }) {
-  const dispatch = useDispatch();
-  const userLoginStatus = useSelector(selectUserLoginStatus);
-  const [loading, setLoading] = useState(false);
-  const isSubscribers =
-    Array.isArray(isUser?.subscribers) && isUser.subscribers.includes(user.id);
+  const { loading, add, remove } = useSubscribeActions(isUser, user);
 
-  useEffect(() => {
-    if (userLoginStatus === 'loading') {
-      setLoading(true);
-    } else {
-      setLoading(false);
-    }
-  }, [userLoginStatus]);
+  const subscribed = useMemo(() => {
+    return isSubscribed(isUser?.subscribers, user.id);
+  }, [isUser?.subscribers, user.id]);
 
-  function addSubscribersHandler() {
-    const data = {
-      userId: isUser.id,
-      subscriber: { subscriberId: user.id },
-    };
+  if (isUser.id === user.id) return null;
 
-    dispatch(USER_ADD_SUBSCRIBERS(data));
-  }
-
-  function deleteSubscribersHandler() {
-    const data = {
-      userId: isUser.id,
-      subscriber: { currentUserId: user.id },
-    };
-
-    dispatch(USER_DELETE_SUBSCRIBERS(data));
-  }
-
-  if (isUser.id === user.id) return;
-  return (
-    <>
-      {isSubscribers ? (
-        <Button
-          variant="outlined"
-          loading={loading}
-          onClick={deleteSubscribersHandler}
-          sx={{ marginBlock: 5 }}
-        >
-          Unsubscribe
-        </Button>
-      ) : (
-        <Button
-          variant="contained"
-          loading={loading}
-          onClick={addSubscribersHandler}
-          sx={{ marginBlock: 5 }}
-        >
-          Subscribe
-        </Button>
-      )}
-    </>
+  return subscribed ? (
+    <Button
+      variant="outlined"
+      onClick={remove}
+      disabled={loading}
+      sx={{ marginBlock: 5 }}
+    >
+      Unsubscribe
+    </Button>
+  ) : (
+    <Button
+      variant="contained"
+      onClick={add}
+      disabled={loading}
+      sx={{ marginBlock: 5 }}
+    >
+      Subscribe
+    </Button>
   );
 }
